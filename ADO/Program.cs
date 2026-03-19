@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data;
+using DataBase.Connect;
+using static OutputInfo.NotScalar.OutputNotScalar;
+using static OutputInfo.Scalar.OutputScalar;
+//using static - Используем чтобы не вызывать классы, а только их функции.
+using DataBase.Disconnect;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ADO
 {
-    internal class Program
+    internal class Program : ConnectToDatabase
     {
         static void Main(string[] args)
         {
@@ -22,63 +22,9 @@ namespace ADO
             SqlCommand command = new SqlCommand(cmd, connection);
             //прописывание и создание команды
             outputInfoNotScalar(command);
-            cmd = "SELECT COUNT(*) FROM Movies";
+            cmd = "Movies";
             outputInfoScalar(command, cmd);
-            connection = DisconnectDatabse(connection);
-        }
-        static SqlConnection DisconnectDatabse(SqlConnection connection) 
-        {
-            if(CheckConnectToDatabase(connection) == true)
-            {
-                connection.Close();
-            }
-            return connection;
-        }
-        static SqlConnection ConnectDatabase(string pathToDatabase) 
-        {
-            SqlConnection connection = new SqlConnection(pathToDatabase);    //подключение
-            connection.Open();
-            return connection;
-        }
-        static bool CheckConnectToDatabase(SqlConnection connection) 
-        {
-            if (connection.State == ConnectionState.Closed)
-            {
-                return false;
-            }
-            else 
-            {
-                return true;
-            }
-
-        }
-        static void outputInfoNotScalar(SqlCommand command)
-        { 
-            SqlDataReader reader = command.ExecuteReader();
-            //выполнение команды
-            //ExecuteReader - вынимает таблицу, то есть набор значений
-            for (int i = 0; i < reader.FieldCount; i++)
-            {
-                Console.Write(reader.GetName(i) + "\t");
-            }
-            Console.WriteLine();
-            while (reader.Read())       //Переход на следующую строку, пока строки не кончатся (NULL)
-            {
-                //Console.WriteLine($"{reader[0]}\t{reader[1]}\t{reader[2]}\t{reader[3]}");
-                for (int i = 0; i < reader.FieldCount; ++i)     //Проход по столбцам и вывод информации с каждого из столбцов
-                {
-                    Console.Write($"{reader[i]}\t");
-                }
-                Console.WriteLine();
-            }
-            reader.Close();
-        }
-        static void outputInfoScalar(SqlCommand command, string queryText) 
-        {
-            command.CommandText = "SELECT COUNT(*) FROM Movies";
-            //Замена текста команды используя функцию CommandText
-            Console.WriteLine($"Колличество записей:\t{command.ExecuteScalar()}");
-            //ExecuteScalar - вынимает одно значение, это и есть скалярный запрос
+            connection = DisconnectDB.DisconnectDatabase(connection);
         }
     }
 }

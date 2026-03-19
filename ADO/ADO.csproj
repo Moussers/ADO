@@ -43,6 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CheckConnectToDB.cs" />
+    <Compile Include="ConnectToDatabase.cs" />
+    <Compile Include="DisconnectDatabase.cs" />
+    <Compile Include="OutputNotScalar.cs" />
+    <Compile Include="OutputScalar.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
