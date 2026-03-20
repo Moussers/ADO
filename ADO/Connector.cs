@@ -1,13 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Data.SqlClient;
-
-namespace OutputInfo.NotScalar
+namespace ADO
 {
-    internal class OutputNotScalar
+    internal class Connector
     {
-
-        public static void outputInfoNotScalar(SqlCommand command)
+        string connection_string;
+        SqlConnection connection;
+        public Connector(string connection_string) 
         {
+            Console.WriteLine(connection_string);
+            this.connection_string = connection_string;
+            connection = new SqlConnection(connection_string);
+        }
+        public void Select(string cmd)
+        {
+            connection.Open();
+            SqlCommand command = new SqlCommand(cmd, connection);
             SqlDataReader reader = command.ExecuteReader();
             //выполнение команды
             //ExecuteReader - вынимает таблицу, то есть набор значений
@@ -26,6 +38,16 @@ namespace OutputInfo.NotScalar
                 Console.WriteLine();
             }
             reader.Close();
+            connection.Close();
+        }
+        public object Scalar(string cmd)
+        {
+            object result = null;
+            connection.Open();
+            SqlCommand command = new SqlCommand(cmd, connection);
+            result = command.ExecuteScalar();     //Выполнение скалярного запроса.
+            connection.Close();
+            return result;
         }
     }
 }
