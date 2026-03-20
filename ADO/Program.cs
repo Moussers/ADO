@@ -23,14 +23,6 @@ namespace ADO
                 "director=director_id"
                 );
             Console.WriteLine($"Количество записей: {connector.Scalar("SELECT COUNT(*) FROM Directors")}");
-            //string path = connection.Database;
-            //Console.WriteLine(path.ToString());
-            //string cmd = "SELECT movie_id, title, release_date, first_name, last_name FROM Movies, Directors WHERE director = director_id";
-            //SqlCommand command = new SqlCommand(cmd, connection);
-            //прописывание и создание команды
-            //outputInfoNotScalar(command);
-            //cmd = "Movies";
-            //outputInfoScalar(command, cmd);
         }
     }
 }
