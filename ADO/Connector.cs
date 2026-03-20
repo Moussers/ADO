@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Data.SqlClient;
 namespace ADO
 {
@@ -40,6 +38,13 @@ namespace ADO
             reader.Close();
             connection.Close();
         }
+        public void Select(string field, string tables, string condition = "") 
+        {
+            string cmd = $"SELECT {field} FROM {tables}";
+            if (condition != "") cmd += $" WHERE {condition}";
+            cmd += ";";
+            Select(cmd);
+        }
         public object Scalar(string cmd)
         {
             object result = null;
@@ -48,6 +53,40 @@ namespace ADO
             result = command.ExecuteScalar();     //Выполнение скалярного запроса.
             connection.Close();
             return result;
+        }
+        public void Insert(string cmd) 
+        {
+            SqlCommand command = new SqlCommand(cmd, connection);
+            connection.Open();
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Source);
+                Console.WriteLine(ex.Message);
+                if (ex.GetType() == typeof(SqlException) && ex.Message.Contains("id")) 
+                {
+                    Console.WriteLine("Good");
+                }
+            }
+            connection.Close();
+        }
+        public int GetNextPrimaryKey(string table) 
+        {
+            return GetMaxPrimaryKey(table) + 1;
+        }
+        public int GetMaxPrimaryKey(string table) 
+        {
+            string cmd = $"SELECT * FROM {table}";
+            SqlCommand command = new SqlCommand(cmd, connection);
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            string pk_name = reader.GetName(0);
+            reader.Close();
+            connection.Close();
+            return (int)Scalar($"SELECT MAX ({pk_name}) FROM {table}");
         }
     }
 }
