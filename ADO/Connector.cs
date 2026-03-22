@@ -62,7 +62,7 @@ namespace ADO
         {
             connection.Open();
             //string cmd = "SELECT table_name, constraint_type, constraint_name FROM information_schema.table_constraints WHERE table_name = " + tableName;
-            string cmd = "SELECT K.COLUMN_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS AS T" +
+            string cmd =  $"SELECT K.COLUMN_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS AS T" +
                 " JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE AS K" +
                 " ON K.CONSTRAINT_NAME=T.CONSTRAINT_NAME WHERE T.CONSTRAINT_TYPE = 'PRIMARY KEY' AND T.TABLE_NAME = '"+tableName+"'";
             SqlCommand command = new SqlCommand(cmd, connection);
