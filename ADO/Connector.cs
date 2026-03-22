@@ -54,28 +54,20 @@ namespace ADO
             connection.Close();
             return result;
         }
-        public void Insert(string cmd) 
-        {
-            SqlCommand command = new SqlCommand(cmd, connection);
-            connection.Open();
-            try
-            {
-                command.ExecuteNonQuery();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Source);
-                Console.WriteLine(ex.Message);
-                if (ex.GetType() == typeof(SqlException) && ex.Message.Contains("id")) 
-                {
-                    Console.WriteLine("Good");
-                }
-            }
-            connection.Close();
-        }
         public int GetNextPrimaryKey(string table) 
         {
             return GetMaxPrimaryKey(table) + 1;
+        }
+        public string GetPrimaryKeyName(string tableName) 
+        {
+            connection.Open();
+            //string cmd = "SELECT table_name, constraint_type, constraint_name FROM information_schema.table_constraints WHERE table_name = " + tableName;
+            string cmd = "SELECT K.COLUMN_NAME FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS AS T" +
+                " JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE AS K" +
+                " ON K.CONSTRAINT_NAME=T.CONSTRAINT_NAME WHERE T.CONSTRAINT_TYPE = 'PRIMARY KEY' AND T.TABLE_NAME = '"+tableName+"'";
+            SqlCommand command = new SqlCommand(cmd, connection);
+            string ret = command.ExecuteScalar().ToString();
+            return ret;
         }
         public int GetMaxPrimaryKey(string table) 
         {
@@ -87,6 +79,25 @@ namespace ADO
             reader.Close();
             connection.Close();
             return (int)Scalar($"SELECT MAX ({pk_name}) FROM {table}");
+        }
+        public void Insert(string cmd)
+        {
+            SqlCommand command = new SqlCommand(cmd, connection);
+            connection.Open();
+            try
+            {
+                command.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Source);
+                Console.WriteLine(ex.Message);
+                if (ex.GetType() == typeof(SqlException) && ex.Message.Contains("id"))
+                {
+                    Console.WriteLine("Good");
+                }
+            }
+            connection.Close();
         }
     }
 }
