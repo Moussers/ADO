@@ -11,7 +11,7 @@ namespace ADO_Connector
     {
         private readonly string connection_string;
         static SqlConnection connection;
-        public ADO_Connector(string connection_string)
+        public ADO_Connector (string connection_string)
         {
             Console.WriteLine(connection_string);
             this.connection_string = connection_string;
