@@ -1,19 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Windows.Markup;
-namespace ADO
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ADO_Connector
 {
-    internal class Connector
+    public class ADO_Connector
     {
-        string connection_string;
-        SqlConnection connection;
-        public Connector(string connection_string)
+        private readonly string connection_string;
+        static SqlConnection connection;
+        public ADO_Connector(string connection_string)
         {
             Console.WriteLine(connection_string);
             this.connection_string = connection_string;
             connection = new SqlConnection(connection_string);
         }
-        public void Select(string cmd)
+        public static void Select(string cmd)
         {
             connection.Open();
             SqlCommand command = new SqlCommand(cmd, connection);
@@ -37,14 +41,14 @@ namespace ADO
             reader.Close();
             connection.Close();
         }
-        public void Select(string field, string tables, string condition = "")
+        public static void Select(string field, string tables, string condition = "")
         {
             string cmd = $"SELECT {field} FROM {tables}";
             if (condition != "") cmd += $" WHERE {condition}";
             cmd += ";";
             Select(cmd);
         }
-        public object Scalar(string cmd)
+        public static object Scalar(string cmd)
         {
             object result = null;
             connection.Open();
@@ -53,7 +57,7 @@ namespace ADO
             connection.Close();
             return result;
         }
-        public void Insert(string cmd)
+        public static void Insert(string cmd)
         {
             SqlCommand command = new SqlCommand(cmd, connection);
             connection.Open();
@@ -72,11 +76,11 @@ namespace ADO
             }
             connection.Close();
         }
-        public int GetNextPrimaryKey(string table)
+        public static int GetNextPrimaryKey(string table)
         {
             return GetMaxPrimaryKey(table) + 1;
         }
-        public string GetPrimaryKeyColumnName(string table)
+        public static string GetPrimaryKeyColumnName(string table)
         {
             //string raw = @"RAW string";     //RAW-строка игнорирует переносы
             string cmd = $@"SELECT INFORMATION_SCHEMA.KEY_COLUMN_USAGE.COLUMN_NAME
@@ -85,7 +89,7 @@ WHERE TABLE_NAME = N'{table}'
 AND CONSTRAINT_NAME LIKE N'PK_%';";
             return (string)Scalar(cmd);
         }
-        public int GetMaxPrimaryKey(string table)
+        public static int GetMaxPrimaryKey(string table)
         {
             string cmd = $"SELECT * FROM {table}";
             SqlCommand command = new SqlCommand(cmd, connection);
@@ -96,17 +100,17 @@ AND CONSTRAINT_NAME LIKE N'PK_%';";
             connection.Close();
             return (int)Scalar($"SELECT MAX ({pk_name}) FROM {table}");
         }
-        public void Insert(string table, string fields, string values) 
+        public static void Insert(string table, string fields, string values)
         {
             string condition = "";
             string[] s_fileds = fields.Split(',');
             string[] s_values = values.Split(',');
             string parsed_values = $"N'{s_values[0]}',";
-            for (int i = 1; i < s_fileds.Length; i++) 
+            for (int i = 1; i < s_fileds.Length; i++)
             {
                 condition += $" {s_fileds[i]}=N'{s_values[i]}' ";
                 parsed_values += s_values[i][0] != 'N' && s_values[i][1] != '\'' ? $"N'{s_values[i]}'" : s_values[i];
-                if (i != s_fileds.Length - 1) 
+                if (i != s_fileds.Length - 1)
                 {
                     condition += "AND";
                     parsed_values += ",";
