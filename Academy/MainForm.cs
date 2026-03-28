@@ -37,7 +37,8 @@ namespace Academy
             "Количество студентов",
             "Количество групп",
             "Количество направлений",
-            "Количество преподователей" 
+            "Количество дисциплин",
+            "Количество преподователей"
         };
         DataGridView[] tables;
         Connector connector;
@@ -57,6 +58,26 @@ namespace Academy
             int i = tabControl.SelectedIndex;
             tables[i].DataSource = connector.Select($"SELECT * FROM {tabControl.SelectedTab.Text}");
             toolStripStatusLabel.Text = $"{status_messages[i]}: {tables[i].RowCount - 1}";
+            if (i == 1)
+            {
+                DataTable dtb = connector.Select($"SELECT direction_name FROM directions");
+                comboBox.Items.Clear();
+                comboBox.Items.Add("Все направления");
+                for (int j = 0; j < dtb.Rows.Count; j++)
+                {
+                    comboBox.Items.Add(dtb.Rows[j][0].ToString());
+                }
+                comboBox.SelectedIndex = 0;
+            }
+        }
+
+        private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int i = 1;
+            if (comboBox.SelectedIndex > 0)
+                tables[i].DataSource = connector.Select($"SELECT * FROM {tabControl.SelectedTab.Text} WHERE direction = {comboBox.SelectedIndex}");
+            else
+                tables[i].DataSource = connector.Select($"SELECT * FROM {tabControl.SelectedTab.Text}");
         }
     }
 }
