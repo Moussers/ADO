@@ -151,7 +151,7 @@ namespace Academy
             }
         }
 
-        private void select_group_direction()
+        private void selectGroupDirection()
         {
             int i = 0;
             if (FilterByGroups.SelectedIndex > 0 && FilterByDirections.SelectedIndex > 0)
@@ -190,12 +190,12 @@ namespace Academy
 
         private void FilterByGroups_SelectedIndexChanged(object sender, EventArgs e)
         {
-            select_group_direction();
+            selectGroupDirection();
         }
 
         private void FilterByDirections_SelectedIndexChanged(object sender, EventArgs e)
         {
-            select_group_direction();
+            selectGroupDirection();
         }
     }
 }

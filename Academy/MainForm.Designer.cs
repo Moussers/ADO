@@ -42,10 +42,10 @@
             this.FillterGroups = new System.Windows.Forms.ComboBox();
             this.dgvGroups = new System.Windows.Forms.DataGridView();
             this.tabPageStudents = new System.Windows.Forms.TabPage();
+            this.FilterByDirections = new System.Windows.Forms.ComboBox();
+            this.FilterByGroups = new System.Windows.Forms.ComboBox();
             this.dgvStudents = new System.Windows.Forms.DataGridView();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.FilterByGroups = new System.Windows.Forms.ComboBox();
-            this.FilterByDirections = new System.Windows.Forms.ComboBox();
             this.statusStrip.SuspendLayout();
             this.tabPageTeachers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeachers)).BeginInit();
@@ -126,7 +126,7 @@
             this.FillterDisciplines.FormattingEnabled = true;
             this.FillterDisciplines.Location = new System.Drawing.Point(9, 4);
             this.FillterDisciplines.Name = "FillterDisciplines";
-            this.FillterDisciplines.Size = new System.Drawing.Size(204, 21);
+            this.FillterDisciplines.Size = new System.Drawing.Size(328, 21);
             this.FillterDisciplines.TabIndex = 4;
             this.FillterDisciplines.SelectedIndexChanged += new System.EventHandler(this.FillterDisciplines_SelectedIndexChanged);
             // 
@@ -211,6 +211,24 @@
             this.tabPageStudents.Text = "Students";
             this.tabPageStudents.UseVisualStyleBackColor = true;
             // 
+            // FilterByDirections
+            // 
+            this.FilterByDirections.FormattingEnabled = true;
+            this.FilterByDirections.Location = new System.Drawing.Point(161, 7);
+            this.FilterByDirections.Name = "FilterByDirections";
+            this.FilterByDirections.Size = new System.Drawing.Size(295, 21);
+            this.FilterByDirections.TabIndex = 6;
+            this.FilterByDirections.SelectedIndexChanged += new System.EventHandler(this.FilterByDirections_SelectedIndexChanged);
+            // 
+            // FilterByGroups
+            // 
+            this.FilterByGroups.FormattingEnabled = true;
+            this.FilterByGroups.Location = new System.Drawing.Point(9, 7);
+            this.FilterByGroups.Name = "FilterByGroups";
+            this.FilterByGroups.Size = new System.Drawing.Size(121, 21);
+            this.FilterByGroups.TabIndex = 5;
+            this.FilterByGroups.SelectedIndexChanged += new System.EventHandler(this.FilterByGroups_SelectedIndexChanged);
+            // 
             // dgvStudents
             // 
             this.dgvStudents.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -237,24 +255,6 @@
             this.tabControl.Size = new System.Drawing.Size(809, 449);
             this.tabControl.TabIndex = 2;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
-            // 
-            // FilterByGroups
-            // 
-            this.FilterByGroups.FormattingEnabled = true;
-            this.FilterByGroups.Location = new System.Drawing.Point(9, 7);
-            this.FilterByGroups.Name = "FilterByGroups";
-            this.FilterByGroups.Size = new System.Drawing.Size(121, 21);
-            this.FilterByGroups.TabIndex = 5;
-            this.FilterByGroups.SelectedIndexChanged += new System.EventHandler(this.FilterByGroups_SelectedIndexChanged);
-            // 
-            // FilterByDirections
-            // 
-            this.FilterByDirections.FormattingEnabled = true;
-            this.FilterByDirections.Location = new System.Drawing.Point(161, 7);
-            this.FilterByDirections.Name = "FilterByDirections";
-            this.FilterByDirections.Size = new System.Drawing.Size(295, 21);
-            this.FilterByDirections.TabIndex = 6;
-            this.FilterByDirections.SelectedIndexChanged += new System.EventHandler(this.FilterByDirections_SelectedIndexChanged);
             // 
             // MainForm
             // 
