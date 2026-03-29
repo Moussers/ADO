@@ -105,20 +105,27 @@ namespace Academy
 
         private void FillterDisciplines_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //int i = 1;
-            //if (FilterDisciplines.SelectedIndex > 0)
-            //{
-            //    tables[i].DataSource = connector.Select($"SELECT discipline_id FROM Disciplines, {tabControl.SelectedTab.Text} INNER JOIN DisciplinesDirectionsRelation as DDR on direction_id = direction");
-            //}
-            //else 
-            //{
-            //    tables[i].DataSource = connector.Select($"SELECT * FROM {tabControl.SelectedTab.Text}");
-            //}
+            int i = 3;
+            if (FillterDisciplines.SelectedIndex > 0)
+            {
+                int selectedItem = FillterDisciplines.SelectedIndex;
+                tables[i].DataSource = connector.Select($"SELECT * FROM {tabControl.SelectedTab.Text} AS Dis INNER JOIN DisciplinesDirectionsRelation as DDR ON DDR.direction = {selectedItem} AND Dis.discipline_id = DDR.discipline;");
+            }
+            else 
+            {
+                tables[i].DataSource = connector.Select($"SELECT * FROM {tabControl.SelectedTab.Text}");
+            }
         }
 
         private void FillterTeachers_SelectedIndexChanged(object sender, EventArgs e)
         {
+            int i = 4;
+            if (FillterTeachers.SelectedIndex > 0) 
+            {
+                int selecteditem = FillterTeachers.SelectedIndex;
+                tables[i].DataSource = connector.Select($"SELECT * FROM {tabControl.SelectedTab.Text} AS Teach INNER JOIN TeachersDisciplinesRelation as TDR ON TDR.discipline = {selecteditem} AND Teach.teacher_id = TDR.teacher;");
 
+            }
         }
     }
 }
