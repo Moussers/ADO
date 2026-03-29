@@ -31,6 +31,7 @@
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.tabPageTeachers = new System.Windows.Forms.TabPage();
+            this.FillterTeachers = new System.Windows.Forms.ComboBox();
             this.dgvTeachers = new System.Windows.Forms.DataGridView();
             this.tabPageDisciplines = new System.Windows.Forms.TabPage();
             this.FillterDisciplines = new System.Windows.Forms.ComboBox();
@@ -43,7 +44,8 @@
             this.tabPageStudents = new System.Windows.Forms.TabPage();
             this.dgvStudents = new System.Windows.Forms.DataGridView();
             this.tabControl = new System.Windows.Forms.TabControl();
-            this.FillterTeachers = new System.Windows.Forms.ComboBox();
+            this.FilterByGroups = new System.Windows.Forms.ComboBox();
+            this.FilterByDirections = new System.Windows.Forms.ComboBox();
             this.statusStrip.SuspendLayout();
             this.tabPageTeachers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTeachers)).BeginInit();
@@ -85,6 +87,15 @@
             this.tabPageTeachers.TabIndex = 4;
             this.tabPageTeachers.Text = "Teachers";
             this.tabPageTeachers.UseVisualStyleBackColor = true;
+            // 
+            // FillterTeachers
+            // 
+            this.FillterTeachers.FormattingEnabled = true;
+            this.FillterTeachers.Location = new System.Drawing.Point(7, 7);
+            this.FillterTeachers.Name = "FillterTeachers";
+            this.FillterTeachers.Size = new System.Drawing.Size(121, 21);
+            this.FillterTeachers.TabIndex = 5;
+            this.FillterTeachers.SelectedIndexChanged += new System.EventHandler(this.FillterTeachers_SelectedIndexChanged);
             // 
             // dgvTeachers
             // 
@@ -166,11 +177,11 @@
             this.tabPageGroups.Text = "Groups";
             this.tabPageGroups.UseVisualStyleBackColor = true;
             // 
-            // FilllterGroups
+            // FillterGroups
             // 
             this.FillterGroups.FormattingEnabled = true;
             this.FillterGroups.Location = new System.Drawing.Point(8, 6);
-            this.FillterGroups.Name = "FilllterGroups";
+            this.FillterGroups.Name = "FillterGroups";
             this.FillterGroups.Size = new System.Drawing.Size(284, 21);
             this.FillterGroups.TabIndex = 4;
             this.FillterGroups.SelectedIndexChanged += new System.EventHandler(this.FillterGroups_SelectedIndexChanged);
@@ -189,6 +200,8 @@
             // 
             // tabPageStudents
             // 
+            this.tabPageStudents.Controls.Add(this.FilterByDirections);
+            this.tabPageStudents.Controls.Add(this.FilterByGroups);
             this.tabPageStudents.Controls.Add(this.dgvStudents);
             this.tabPageStudents.Location = new System.Drawing.Point(4, 22);
             this.tabPageStudents.Name = "tabPageStudents";
@@ -225,14 +238,23 @@
             this.tabControl.TabIndex = 2;
             this.tabControl.SelectedIndexChanged += new System.EventHandler(this.tabControl_SelectedIndexChanged);
             // 
-            // FilterTeachers
+            // FilterByGroups
             // 
-            this.FillterTeachers.FormattingEnabled = true;
-            this.FillterTeachers.Location = new System.Drawing.Point(7, 7);
-            this.FillterTeachers.Name = "FilterTeachers";
-            this.FillterTeachers.Size = new System.Drawing.Size(121, 21);
-            this.FillterTeachers.TabIndex = 5;
-            this.FillterTeachers.SelectedIndexChanged += new System.EventHandler(this.FillterTeachers_SelectedIndexChanged);
+            this.FilterByGroups.FormattingEnabled = true;
+            this.FilterByGroups.Location = new System.Drawing.Point(9, 7);
+            this.FilterByGroups.Name = "FilterByGroups";
+            this.FilterByGroups.Size = new System.Drawing.Size(121, 21);
+            this.FilterByGroups.TabIndex = 5;
+            this.FilterByGroups.SelectedIndexChanged += new System.EventHandler(this.FilterByGroups_SelectedIndexChanged);
+            // 
+            // FilterByDirections
+            // 
+            this.FilterByDirections.FormattingEnabled = true;
+            this.FilterByDirections.Location = new System.Drawing.Point(161, 7);
+            this.FilterByDirections.Name = "FilterByDirections";
+            this.FilterByDirections.Size = new System.Drawing.Size(295, 21);
+            this.FilterByDirections.TabIndex = 6;
+            this.FilterByDirections.SelectedIndexChanged += new System.EventHandler(this.FilterByDirections_SelectedIndexChanged);
             // 
             // MainForm
             // 
@@ -279,6 +301,8 @@
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.ComboBox FillterDisciplines;
         private System.Windows.Forms.ComboBox FillterTeachers;
+        private System.Windows.Forms.ComboBox FilterByGroups;
+        private System.Windows.Forms.ComboBox FilterByDirections;
     }
 }
 

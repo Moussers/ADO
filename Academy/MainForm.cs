@@ -59,9 +59,28 @@ namespace Academy
             int i = tabControl.SelectedIndex;
             tables[i].DataSource = connector.Select($"SELECT * FROM {tabControl.SelectedTab.Text}");
             toolStripStatusLabel.Text = $"{status_messages[i]}: {tables[i].RowCount - 1}";
+            if (i == 0) 
+            {
+                DataTable tableOfGroups = connector.Select($"SELECT group_name FROM Groups");
+                FilterByGroups.Items.Clear();
+                FilterByGroups.Items.Add("Все группы");
+                for (int j = 0; j < tableOfGroups.Rows.Count; j++) 
+                {
+                    FilterByGroups.Items.Add(tableOfGroups.Rows[j][0].ToString());
+                }
+                FilterByGroups.SelectedIndex = 0;
+                DataTable tableOfDirections = connector.Select($"SELECT direction_name FROM Directions");
+                FilterByDirections.Items.Clear();
+                FilterByDirections.Items.Add("Все направления");
+                for (int d = 0; d < tableOfDirections.Rows.Count; d++)
+                {
+                    FilterByDirections.Items.Add(tableOfDirections.Rows[d][0].ToString());
+                }
+                FilterByDirections.SelectedIndex = 0;
+            }
             if (i == 1)
             {
-                DataTable dataTable = connector.Select($"SELECT direction_name FROM directions");
+                DataTable dataTable = connector.Select($"SELECT direction_name FROM Directions");
                 FillterGroups.Items.Clear();
                 FillterGroups.Items.Add("Все направления");
                 for (int j = 0; j < dataTable.Rows.Count; j++)
@@ -72,7 +91,7 @@ namespace Academy
             }
             if (i == 3) 
             {
-                DataTable dataTable = connector.Select($"Select direction_name FROM directions");
+                DataTable dataTable = connector.Select($"Select direction_name FROM Directions");
                 FillterDisciplines.Items.Clear();
                 FillterDisciplines.Items.Add("Все направления");
                 for (int j = 0; j < dataTable.Rows.Count; j++) 
@@ -109,7 +128,7 @@ namespace Academy
             if (FillterDisciplines.SelectedIndex > 0)
             {
                 int selectedItem = FillterDisciplines.SelectedIndex;
-                tables[i].DataSource = connector.Select($"SELECT * FROM {tabControl.SelectedTab.Text} AS Dis INNER JOIN DisciplinesDirectionsRelation as DDR ON DDR.direction = {selectedItem} AND Dis.discipline_id = DDR.discipline;");
+                tables[i].DataSource = connector.Select($"SELECT * FROM {tabControl.SelectedTab.Text} INNER JOIN DisciplinesDirectionsRelation as DDR ON DDR.direction = {selectedItem} AND discipline_id = DDR.discipline;");
             }
             else 
             {
@@ -120,12 +139,63 @@ namespace Academy
         private void FillterTeachers_SelectedIndexChanged(object sender, EventArgs e)
         {
             int i = 4;
-            if (FillterTeachers.SelectedIndex > 0) 
+            if (FillterTeachers.SelectedIndex > 0)
             {
-                int selecteditem = FillterTeachers.SelectedIndex;
-                tables[i].DataSource = connector.Select($"SELECT * FROM {tabControl.SelectedTab.Text} AS Teach INNER JOIN TeachersDisciplinesRelation as TDR ON TDR.discipline = {selecteditem} AND Teach.teacher_id = TDR.teacher;");
+                int selectedItem = FillterTeachers.SelectedIndex;
+                tables[i].DataSource = connector.Select($"SELECT * FROM {tabControl.SelectedTab.Text} INNER JOIN TeachersDisciplinesRelation as TDR ON TDR.discipline = {selectedItem} AND teacher_id = TDR.teacher;");
 
             }
+            else 
+            {
+                tables[i].DataSource = connector.Select($"Select * FROM {tabControl.SelectedTab.Text}");
+            }
+        }
+
+        private void select_group_direction()
+        {
+            int i = 0;
+            if (FilterByGroups.SelectedIndex > 0 && FilterByDirections.SelectedIndex > 0)
+            {
+                int selectedItem = FilterByGroups.SelectedIndex;
+                int selectedItem2 = FilterByDirections.SelectedIndex;
+                DataTable grp = connector.Select("SELECT group_id FROM groups;");
+                String grp_id = grp.Rows[selectedItem - 1][0].ToString();
+                DataTable dir = connector.Select("SELECT direction_id FROM directions;");
+                String dir_id = dir.Rows[selectedItem2 - 1][0].ToString();
+                tables[i].DataSource = connector.Select($"Select stud.* FROM {tabControl.SelectedTab.Text} as stud INNER JOIN groups AS g ON g.group_id={grp_id} AND g.direction = {dir_id} AND g.group_id=[group]; ");
+            }
+            else if (FilterByGroups.SelectedIndex > 0 && FilterByDirections.SelectedIndex == 0)
+            {
+                int selectedItem = FilterByGroups.SelectedIndex;
+                int selectedItem2 = FilterByDirections.SelectedIndex;
+                DataTable grp = connector.Select("SELECT group_id FROM groups;");
+                String grp_id = grp.Rows[selectedItem - 1][0].ToString();
+                tables[i].DataSource = connector.Select($"Select stud.* FROM {tabControl.SelectedTab.Text} as stud INNER JOIN groups AS g ON g.group_id={grp_id} AND [group]={grp_id}; ");
+            }
+            else if (FilterByGroups.SelectedIndex == 0 && FilterByDirections.SelectedIndex > 0)
+            {
+                int selectedItem = FilterByGroups.SelectedIndex;
+                int selectedItem2 = FilterByDirections.SelectedIndex;
+                DataTable dir = connector.Select("SELECT direction_id FROM directions;");
+                String dir_id = dir.Rows[selectedItem2 - 1][0].ToString();
+                tables[i].DataSource = connector.Select($"Select stud.* FROM {tabControl.SelectedTab.Text} as stud INNER JOIN groups AS g ON g.direction = {dir_id} AND g.group_id=[group]; ");
+            }
+            else if (FilterByGroups.SelectedIndex == 0 && FilterByDirections.SelectedIndex == 0)
+            {
+                int selectedItem = FilterByGroups.SelectedIndex;
+                int selectedItem2 = FilterByDirections.SelectedIndex;
+                tables[i].DataSource = connector.Select($"Select * FROM {tabControl.SelectedTab.Text}; ");
+            }
+        }
+
+        private void FilterByGroups_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            select_group_direction();
+        }
+
+        private void FilterByDirections_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            select_group_direction();
         }
     }
 }
