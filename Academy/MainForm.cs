@@ -1,14 +1,15 @@
-﻿using System;
+﻿using DBtools;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Configuration;
-using DBtools;
 
 namespace Academy
 {
@@ -60,24 +61,64 @@ namespace Academy
             toolStripStatusLabel.Text = $"{status_messages[i]}: {tables[i].RowCount - 1}";
             if (i == 1)
             {
-                DataTable dtb = connector.Select($"SELECT direction_name FROM directions");
-                comboBox.Items.Clear();
-                comboBox.Items.Add("Все направления");
-                for (int j = 0; j < dtb.Rows.Count; j++)
+                DataTable dataTable = connector.Select($"SELECT direction_name FROM directions");
+                FillterGroups.Items.Clear();
+                FillterGroups.Items.Add("Все направления");
+                for (int j = 0; j < dataTable.Rows.Count; j++)
                 {
-                    comboBox.Items.Add(dtb.Rows[j][0].ToString());
+                    FillterGroups.Items.Add(dataTable.Rows[j][0].ToString());
                 }
-                comboBox.SelectedIndex = 0;
+                FillterGroups.SelectedIndex = 0;
+            }
+            if (i == 3) 
+            {
+                DataTable dataTable = connector.Select($"Select direction_name FROM directions");
+                FillterDisciplines.Items.Clear();
+                FillterDisciplines.Items.Add("Все направления");
+                for (int j = 0; j < dataTable.Rows.Count; j++) 
+                {
+                    FillterDisciplines.Items.Add(dataTable.Rows[j][0].ToString());
+                }
+                FillterDisciplines.SelectedIndex = 0;
+            }
+            if (i == 4) 
+            {
+                DataTable dataTable = connector.Select("SELECT discipline_name FROM Disciplines");
+                FillterTeachers.Items.Clear();
+                FillterTeachers.Items.Add("Все дисциплины");
+                for (int j = 0; j < dataTable.Rows.Count; j++)
+                {
+                    FillterTeachers.Items.Add(dataTable.Rows[j][0].ToString());
+                }
+                FillterTeachers.SelectedIndex = 0;
             }
         }
 
-        private void comboBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void FillterGroups_SelectedIndexChanged(object sender, EventArgs e)
         {
             int i = 1;
-            if (comboBox.SelectedIndex > 0)
-                tables[i].DataSource = connector.Select($"SELECT * FROM {tabControl.SelectedTab.Text} WHERE direction = {comboBox.SelectedIndex}");
+            if (FillterGroups.SelectedIndex > 0)
+                tables[i].DataSource = connector.Select($"SELECT * FROM {tabControl.SelectedTab.Text} WHERE direction = {FillterGroups.SelectedIndex}");
             else
                 tables[i].DataSource = connector.Select($"SELECT * FROM {tabControl.SelectedTab.Text}");
+        }
+
+        private void FillterDisciplines_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //int i = 1;
+            //if (FilterDisciplines.SelectedIndex > 0)
+            //{
+            //    tables[i].DataSource = connector.Select($"SELECT discipline_id FROM Disciplines, {tabControl.SelectedTab.Text} INNER JOIN DisciplinesDirectionsRelation as DDR on direction_id = direction");
+            //}
+            //else 
+            //{
+            //    tables[i].DataSource = connector.Select($"SELECT * FROM {tabControl.SelectedTab.Text}");
+            //}
+        }
+
+        private void FillterTeachers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
