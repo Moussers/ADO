@@ -35,7 +35,7 @@
   <ItemGroup>
     <Reference Include="DBtools, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\ADO\bin\Debug\DBtools.dll</HintPath>
+      <HintPath>..\DBtools\bin\Debug\DBtools.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
