@@ -100,6 +100,9 @@ namespace Academy
         private void bInsTeachers_Click(object sender, EventArgs e)
         {
             newTheachers.ShowDialog();
+            int i = tabControl.SelectedIndex;
+            tables[i].DataSource = connector.Select($"SELECT * FROM {tabControl.SelectedTab.Text}");
+            toolStripStatusLabel.Text = $"{status_messages[i]}: {tables[i].RowCount - 1}";
         }
     }
 }

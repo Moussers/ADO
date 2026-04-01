@@ -25,28 +25,35 @@ namespace Academy
             string firstName = inputFrName.Text;
             string middleName = inputMidName.Text;
             string birthDate = inputbdTeacher.Text;
+            if (string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(firstName)) 
+            {
+                MessageBox.Show("Поле имя или фамилии не заполнено!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             if (string.IsNullOrEmpty(birthDate)) 
             {
-                birthDate = " ";
+                birthDate = null;
+                //отправка null строки не вызовет ошибки со стороны T-SQL сервера,
+                //если это поле не имееет состояние NOT NULL
             }
             string phone = inputPhnTeacher.Text;
             if (string.IsNullOrEmpty(phone)) 
             {
-                phone = " ";
+                phone = null;
             }
             string mail = inputMailTeacher.Text;
             if (string.IsNullOrEmpty(mail)) 
             {
-                mail = " ";
+                mail = null;
             }
-                connector.Select($"IF NOT EXISTS (SELECT last_name FROM Teacher WHERE {lastName} = last_name) " +
-                $"AND (SELECT first_name FROM Teachers WHERE N'{firstName}' = first_name) " +
+            DataTable dt = connector.Select("SELECT COUNT(*) FROM Teachers");
+            int new_id = Convert.ToInt32(dt.Rows[0][0])+1;
+                connector.Select($"IF NOT EXISTS (SELECT last_name,first_name FROM Teachers WHERE N'{lastName}' = last_name " +
+                $"AND N'{firstName}' = first_name) " +
                 $"BEGIN " +
-                $"INSERT INTO Teachers VALUE ({lastName}, {firstName}, {middleName}, {birthDate}, {phone}, {mail})" +
+                $"INSERT INTO Teachers (teacher_id, last_name, first_name, middle_name, birth_date, phone, email ) VALUES ({new_id}, N'{lastName}', '{firstName}', '{middleName}', N'{birthDate}', {phone}, '{mail}')" +
                 $" END;");
-            //INSERT INTO [dbo].[Teachers] ([teacher_id], [last_name], [first_name], [middle_name], [birth_date],
-            //[email], [phone], [photo], [work_since], [rate]) VALUES (8, N'Твердохлеб', N'Александр', N'Павлович',
-            //N'1981-01-01', NULL, NULL, <SQLVARIANT>, N'2007-10-10', CAST(32.0000 AS SmallMoney))
+            Close();
         }
         private void btCancel_Click(object sender, EventArgs e)
         {
