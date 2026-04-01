@@ -42,6 +42,7 @@ namespace Academy
             "Количество преподователей" 
         };
         AddNewTeachers newTheachers;
+        AddNewStudents newStudents;
         DataGridView[] tables;
         Connector connector;
         Dictionary<string, int> d_directions;
@@ -50,6 +51,7 @@ namespace Academy
         {
             InitializeComponent();
             newTheachers = new AddNewTeachers();
+            newStudents = new AddNewStudents();
             tables = new DataGridView[] { dgvStudents, dgvGroups, dgvDirections, dgvDisciplines, dgvTeachers };
             connector = new DBtools.Connector(ConfigurationManager.ConnectionStrings["PV_521_Import"].ConnectionString);
             //dgvDirections.DataSource = connector.Select("*", "Directions");
@@ -105,6 +107,11 @@ namespace Academy
             int i = tabControl.SelectedIndex;
             tables[i].DataSource = connector.Select($"SELECT * FROM {tabControl.SelectedTab.Text}");
             toolStripStatusLabel.Text = $"{status_messages[i]}: {tables[i].RowCount - 1}";
+        }
+
+        private void bInsStudents_Click(object sender, EventArgs e)
+        {
+            newStudents.ShowDialog();
         }
     }
 }

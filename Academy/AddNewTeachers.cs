@@ -27,7 +27,7 @@ namespace Academy
             string birthDate = inputbdTeacher.Text;
             if (string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(firstName)) 
             {
-                MessageBox.Show("Поле имя или фамилии не заполнено!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Поле имя или фамилия не заполнено!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             if (string.IsNullOrEmpty(birthDate))
