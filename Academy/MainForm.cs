@@ -65,9 +65,7 @@ namespace Academy
         
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            int i = tabControl.SelectedIndex;
-            tables[i].DataSource = connector.Select($"SELECT * FROM {tabControl.SelectedTab.Text}");
-            toolStripStatusLabel.Text = $"{status_messages[i]}: {tables[i].RowCount - 1}";
+            UpdateInfo();
         }
 
         private void cbGroupsDirections_SelectedIndexChanged(object sender, EventArgs e)
@@ -100,6 +98,10 @@ namespace Academy
         private void bInsTeachers_Click(object sender, EventArgs e)
         {
             newTheachers.ShowDialog();
+            UpdateInfo();
+        }
+        private void UpdateInfo() 
+        {
             int i = tabControl.SelectedIndex;
             tables[i].DataSource = connector.Select($"SELECT * FROM {tabControl.SelectedTab.Text}");
             toolStripStatusLabel.Text = $"{status_messages[i]}: {tables[i].RowCount - 1}";
