@@ -39,7 +39,7 @@ namespace Academy
                 string phone = inputPhnTeacher.Text;
             if (string.IsNullOrEmpty(phone))
             {
-                phone = null;
+                phone = "0,";
             }
             else 
             {
@@ -50,13 +50,14 @@ namespace Academy
             {
                 mail = null;
             }
-                DataTable dt = connector.Select("SELECT COUNT(*) FROM Teachers");
+            DataTable dt = connector.Select("SELECT COUNT(*) FROM Teachers");
             int new_id = Convert.ToInt32(dt.Rows[0][0])+1;
                 connector.Select($"IF NOT EXISTS (SELECT last_name,first_name FROM Teachers WHERE N'{lastName}' = last_name " +
                 $"AND N'{firstName}' = first_name) " +
                 $"BEGIN " +
-                $"INSERT INTO Teachers (teacher_id, last_name, first_name, middle_name, birth_date, phone, email ) VALUES ({new_id}, N'{lastName}', N'{firstName}', N'{middleName}', N'{birthDate}', {phone} N'{mail}')" +
-                $" END;");
+                $"INSERT INTO Teachers (teacher_id, last_name, first_name, middle_name, birth_date, phone, email ) " +
+                $"VALUES ({new_id}, N'{lastName}', N'{firstName}', N'{middleName}', N'{birthDate}', {phone} N'{mail}') " +
+                $"END;");
             Close();
         }
         private void btCancel_Click(object sender, EventArgs e)
