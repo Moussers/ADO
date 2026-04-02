@@ -189,7 +189,7 @@
             this.lbPhone.AutoEllipsis = true;
             this.lbPhone.AutoSize = true;
             this.lbPhone.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lbPhone.Location = new System.Drawing.Point(435, 264);
+            this.lbPhone.Location = new System.Drawing.Point(435, 268);
             this.lbPhone.Name = "lbPhone";
             this.lbPhone.Size = new System.Drawing.Size(85, 23);
             this.lbPhone.TabIndex = 13;

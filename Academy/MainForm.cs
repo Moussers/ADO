@@ -41,8 +41,9 @@ namespace Academy
             "Количество дисциплин",
             "Количество преподователей" 
         };
-        AddNewTeachers newTheachers;
+        AddNewTeachers newTeachers;
         AddNewStudents newStudents;
+        AddNewGroups newGroups;
         DataGridView[] tables;
         Connector connector;
         Dictionary<string, int> d_directions;
@@ -50,8 +51,6 @@ namespace Academy
         public MainForm()
         {
             InitializeComponent();
-            newTheachers = new AddNewTeachers();
-            newStudents = new AddNewStudents();
             tables = new DataGridView[] { dgvStudents, dgvGroups, dgvDirections, dgvDisciplines, dgvTeachers };
             connector = new DBtools.Connector(ConfigurationManager.ConnectionStrings["PV_521_Import"].ConnectionString);
             //dgvDirections.DataSource = connector.Select("*", "Directions");
@@ -64,7 +63,7 @@ namespace Academy
             cbGroupsDirection.Items.AddRange(d_directions.Keys.ToArray());
             cbStudentsDirection.Items.AddRange(d_directions.Keys.ToArray());
         }
-        
+
         private void tabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             UpdateInfo();
@@ -99,7 +98,8 @@ namespace Academy
 
         private void bInsTeachers_Click(object sender, EventArgs e)
         {
-            newTheachers.ShowDialog();
+            newTeachers = new AddNewTeachers();
+            newTeachers.ShowDialog();
             UpdateInfo();
         }
         private void UpdateInfo() 
@@ -111,7 +111,16 @@ namespace Academy
 
         private void bInsStudents_Click(object sender, EventArgs e)
         {
+            newStudents = new AddNewStudents();
             newStudents.ShowDialog();
+            UpdateInfo();
+        }
+
+        private void addGroup_Click(object sender, EventArgs e)
+        {
+            newGroups = new AddNewGroups();
+            newGroups.ShowDialog();
+            UpdateInfo();
         }
     }
 }

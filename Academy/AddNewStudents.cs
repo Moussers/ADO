@@ -56,9 +56,6 @@ namespace Academy
             {
                 numberPhone += ",";
             }
-            /*DataTable tableId = connector.Select("SELECT MAX(stud_id) FROM Students");
-            int studentId = Convert.ToInt32(tableId.Rows[0][0]) + 1;*/
-            //int studentId = 0;
             connector.Select($"INSERT INTO Students (last_name, first_name, middle_name, birth_date, phone, email) " +
                 $"VALUES (N'{lastName}', N'{firstName}', N'{middleName}', N'{birthDate}', {numberPhone} N'{eMail}' )");
             Close();
