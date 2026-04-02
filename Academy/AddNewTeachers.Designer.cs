@@ -28,80 +28,92 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.nameTeacher = new System.Windows.Forms.Label();
-            this.inputFrName = new System.Windows.Forms.TextBox();
-            this.lsNameTeacher = new System.Windows.Forms.Label();
-            this.inputLsName = new System.Windows.Forms.TextBox();
-            this.midNameTeachers = new System.Windows.Forms.Label();
-            this.inputMidName = new System.Windows.Forms.TextBox();
+            this.lbFirstName = new System.Windows.Forms.Label();
+            this.tbFirstName = new System.Windows.Forms.TextBox();
+            this.lbLastName = new System.Windows.Forms.Label();
+            this.tbLastName = new System.Windows.Forms.TextBox();
+            this.lbMiddleName = new System.Windows.Forms.Label();
+            this.tbMiddleName = new System.Windows.Forms.TextBox();
             this.btOK = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
-            this.bdTeacher = new System.Windows.Forms.Label();
-            this.inputbdTeacher = new System.Windows.Forms.TextBox();
+            this.lbBirthDate = new System.Windows.Forms.Label();
+            this.tbBirthDate = new System.Windows.Forms.TextBox();
             this.inputMailTeacher = new System.Windows.Forms.TextBox();
-            this.mailTeacher = new System.Windows.Forms.Label();
-            this.inputPhnTeacher = new System.Windows.Forms.TextBox();
-            this.phoneTeacher = new System.Windows.Forms.Label();
+            this.lbEMail = new System.Windows.Forms.Label();
+            this.tbPhone = new System.Windows.Forms.TextBox();
+            this.lbPhone = new System.Windows.Forms.Label();
+            this.pbImage = new System.Windows.Forms.PictureBox();
+            this.btBrowse = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).BeginInit();
             this.SuspendLayout();
             // 
-            // nameTeacher
+            // lbFirstName
             // 
-            this.nameTeacher.AutoEllipsis = true;
-            this.nameTeacher.AutoSize = true;
-            this.nameTeacher.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nameTeacher.Location = new System.Drawing.Point(256, 52);
-            this.nameTeacher.Name = "nameTeacher";
-            this.nameTeacher.Size = new System.Drawing.Size(48, 23);
-            this.nameTeacher.TabIndex = 0;
-            this.nameTeacher.Text = "Имя";
+            this.lbFirstName.AutoEllipsis = true;
+            this.lbFirstName.AutoSize = true;
+            this.lbFirstName.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbFirstName.Location = new System.Drawing.Point(435, 92);
+            this.lbFirstName.Name = "lbFirstName";
+            this.lbFirstName.Size = new System.Drawing.Size(48, 23);
+            this.lbFirstName.TabIndex = 0;
+            this.lbFirstName.Text = "Имя";
             // 
-            // inputFrName
+            // tbFirstName
             // 
-            this.inputFrName.Location = new System.Drawing.Point(33, 52);
-            this.inputFrName.Name = "inputFrName";
-            this.inputFrName.Size = new System.Drawing.Size(194, 20);
-            this.inputFrName.TabIndex = 1;
+            this.tbFirstName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.tbFirstName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.tbFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbFirstName.Location = new System.Drawing.Point(225, 96);
+            this.tbFirstName.Name = "tbFirstName";
+            this.tbFirstName.Size = new System.Drawing.Size(194, 31);
+            this.tbFirstName.TabIndex = 1;
             // 
-            // lsNameTeacher
+            // lbLastName
             // 
-            this.lsNameTeacher.AutoEllipsis = true;
-            this.lsNameTeacher.AutoSize = true;
-            this.lsNameTeacher.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lsNameTeacher.Location = new System.Drawing.Point(256, 108);
-            this.lsNameTeacher.Name = "lsNameTeacher";
-            this.lsNameTeacher.Size = new System.Drawing.Size(91, 23);
-            this.lsNameTeacher.TabIndex = 2;
-            this.lsNameTeacher.Text = "Фамилия";
+            this.lbLastName.AutoEllipsis = true;
+            this.lbLastName.AutoSize = true;
+            this.lbLastName.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbLastName.Location = new System.Drawing.Point(435, 50);
+            this.lbLastName.Name = "lbLastName";
+            this.lbLastName.Size = new System.Drawing.Size(91, 23);
+            this.lbLastName.TabIndex = 2;
+            this.lbLastName.Text = "Фамилия";
             // 
-            // inputLsName
+            // tbLastName
             // 
-            this.inputLsName.Location = new System.Drawing.Point(33, 112);
-            this.inputLsName.Name = "inputLsName";
-            this.inputLsName.Size = new System.Drawing.Size(194, 20);
-            this.inputLsName.TabIndex = 3;
+            this.tbLastName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.tbLastName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.tbLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbLastName.Location = new System.Drawing.Point(225, 50);
+            this.tbLastName.Name = "tbLastName";
+            this.tbLastName.Size = new System.Drawing.Size(194, 31);
+            this.tbLastName.TabIndex = 3;
             // 
-            // midNameTeachers
+            // lbMiddleName
             // 
-            this.midNameTeachers.AutoEllipsis = true;
-            this.midNameTeachers.AutoSize = true;
-            this.midNameTeachers.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.midNameTeachers.Location = new System.Drawing.Point(256, 167);
-            this.midNameTeachers.Name = "midNameTeachers";
-            this.midNameTeachers.Size = new System.Drawing.Size(94, 23);
-            this.midNameTeachers.TabIndex = 4;
-            this.midNameTeachers.Text = "Отчество";
+            this.lbMiddleName.AutoEllipsis = true;
+            this.lbMiddleName.AutoSize = true;
+            this.lbMiddleName.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbMiddleName.Location = new System.Drawing.Point(435, 135);
+            this.lbMiddleName.Name = "lbMiddleName";
+            this.lbMiddleName.Size = new System.Drawing.Size(94, 23);
+            this.lbMiddleName.TabIndex = 4;
+            this.lbMiddleName.Text = "Отчество";
             // 
-            // inputMidName
+            // tbMiddleName
             // 
-            this.inputMidName.Location = new System.Drawing.Point(33, 171);
-            this.inputMidName.Name = "inputMidName";
-            this.inputMidName.Size = new System.Drawing.Size(194, 20);
-            this.inputMidName.TabIndex = 5;
+            this.tbMiddleName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.tbMiddleName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.tbMiddleName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbMiddleName.Location = new System.Drawing.Point(225, 139);
+            this.tbMiddleName.Name = "tbMiddleName";
+            this.tbMiddleName.Size = new System.Drawing.Size(194, 31);
+            this.tbMiddleName.TabIndex = 5;
             // 
             // btOK
             // 
             this.btOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btOK.Location = new System.Drawing.Point(300, 409);
+            this.btOK.Location = new System.Drawing.Point(500, 323);
             this.btOK.Name = "btOK";
             this.btOK.Size = new System.Drawing.Size(76, 35);
             this.btOK.TabIndex = 6;
@@ -112,7 +124,7 @@
             // btCancel
             // 
             this.btCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btCancel.Location = new System.Drawing.Point(191, 409);
+            this.btCancel.Location = new System.Drawing.Point(407, 323);
             this.btCancel.Name = "btCancel";
             this.btCancel.Size = new System.Drawing.Size(76, 35);
             this.btCancel.TabIndex = 7;
@@ -120,81 +132,114 @@
             this.btCancel.UseVisualStyleBackColor = true;
             this.btCancel.Click += new System.EventHandler(this.btCancel_Click);
             // 
-            // bdTeacher
+            // lbBirthDate
             // 
-            this.bdTeacher.AutoEllipsis = true;
-            this.bdTeacher.AutoSize = true;
-            this.bdTeacher.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.bdTeacher.Location = new System.Drawing.Point(253, 229);
-            this.bdTeacher.Name = "bdTeacher";
-            this.bdTeacher.Size = new System.Drawing.Size(141, 23);
-            this.bdTeacher.TabIndex = 8;
-            this.bdTeacher.Text = "Дата рождения";
+            this.lbBirthDate.AutoEllipsis = true;
+            this.lbBirthDate.AutoSize = true;
+            this.lbBirthDate.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbBirthDate.Location = new System.Drawing.Point(435, 178);
+            this.lbBirthDate.Name = "lbBirthDate";
+            this.lbBirthDate.Size = new System.Drawing.Size(141, 23);
+            this.lbBirthDate.TabIndex = 8;
+            this.lbBirthDate.Text = "Дата рождения";
             // 
-            // inputbdTeacher
+            // tbBirthDate
             // 
-            this.inputbdTeacher.Location = new System.Drawing.Point(33, 232);
-            this.inputbdTeacher.Name = "inputbdTeacher";
-            this.inputbdTeacher.Size = new System.Drawing.Size(194, 20);
-            this.inputbdTeacher.TabIndex = 9;
+            this.tbBirthDate.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.tbBirthDate.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.tbBirthDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbBirthDate.Location = new System.Drawing.Point(225, 181);
+            this.tbBirthDate.Name = "tbBirthDate";
+            this.tbBirthDate.Size = new System.Drawing.Size(194, 31);
+            this.tbBirthDate.TabIndex = 9;
             // 
             // inputMailTeacher
             // 
-            this.inputMailTeacher.Location = new System.Drawing.Point(33, 293);
+            this.inputMailTeacher.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.inputMailTeacher.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.inputMailTeacher.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.inputMailTeacher.Location = new System.Drawing.Point(225, 225);
             this.inputMailTeacher.Name = "inputMailTeacher";
-            this.inputMailTeacher.Size = new System.Drawing.Size(194, 20);
+            this.inputMailTeacher.Size = new System.Drawing.Size(194, 31);
             this.inputMailTeacher.TabIndex = 10;
             // 
-            // mailTeacher
+            // lbEMail
             // 
-            this.mailTeacher.AutoEllipsis = true;
-            this.mailTeacher.AutoSize = true;
-            this.mailTeacher.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.mailTeacher.Location = new System.Drawing.Point(253, 293);
-            this.mailTeacher.Name = "mailTeacher";
-            this.mailTeacher.Size = new System.Drawing.Size(64, 23);
-            this.mailTeacher.TabIndex = 11;
-            this.mailTeacher.Text = "Почта";
+            this.lbEMail.AutoEllipsis = true;
+            this.lbEMail.AutoSize = true;
+            this.lbEMail.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbEMail.Location = new System.Drawing.Point(435, 221);
+            this.lbEMail.Name = "lbEMail";
+            this.lbEMail.Size = new System.Drawing.Size(69, 23);
+            this.lbEMail.TabIndex = 11;
+            this.lbEMail.Text = "E-Mail";
             // 
-            // inputPhnTeacher
+            // tbPhone
             // 
-            this.inputPhnTeacher.Location = new System.Drawing.Point(33, 347);
-            this.inputPhnTeacher.Name = "inputPhnTeacher";
-            this.inputPhnTeacher.Size = new System.Drawing.Size(194, 20);
-            this.inputPhnTeacher.TabIndex = 12;
+            this.tbPhone.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.tbPhone.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.tbPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbPhone.Location = new System.Drawing.Point(225, 268);
+            this.tbPhone.Name = "tbPhone";
+            this.tbPhone.Size = new System.Drawing.Size(194, 31);
+            this.tbPhone.TabIndex = 12;
             // 
-            // phoneTeacher
+            // lbPhone
             // 
-            this.phoneTeacher.AutoEllipsis = true;
-            this.phoneTeacher.AutoSize = true;
-            this.phoneTeacher.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.phoneTeacher.Location = new System.Drawing.Point(253, 344);
-            this.phoneTeacher.Name = "phoneTeacher";
-            this.phoneTeacher.Size = new System.Drawing.Size(155, 23);
-            this.phoneTeacher.TabIndex = 13;
-            this.phoneTeacher.Text = "Номер телефона";
+            this.lbPhone.AutoEllipsis = true;
+            this.lbPhone.AutoSize = true;
+            this.lbPhone.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lbPhone.Location = new System.Drawing.Point(435, 264);
+            this.lbPhone.Name = "lbPhone";
+            this.lbPhone.Size = new System.Drawing.Size(85, 23);
+            this.lbPhone.TabIndex = 13;
+            this.lbPhone.Text = "Телефон";
+            // 
+            // pbImage
+            // 
+            this.pbImage.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.pbImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbImage.Location = new System.Drawing.Point(46, 50);
+            this.pbImage.Name = "pbImage";
+            this.pbImage.Size = new System.Drawing.Size(146, 238);
+            this.pbImage.TabIndex = 14;
+            this.pbImage.TabStop = false;
+            // 
+            // btBrowse
+            // 
+            this.btBrowse.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btBrowse.Location = new System.Drawing.Point(80, 303);
+            this.btBrowse.Name = "btBrowse";
+            this.btBrowse.Size = new System.Drawing.Size(76, 35);
+            this.btBrowse.TabIndex = 15;
+            this.btBrowse.Text = "Обзор";
+            this.btBrowse.UseVisualStyleBackColor = true;
+            this.btBrowse.Click += new System.EventHandler(this.btBrowse_Click);
             // 
             // AddNewTeachers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(407, 456);
-            this.Controls.Add(this.phoneTeacher);
-            this.Controls.Add(this.inputPhnTeacher);
-            this.Controls.Add(this.mailTeacher);
+            this.ClientSize = new System.Drawing.Size(609, 373);
+            this.Controls.Add(this.btBrowse);
+            this.Controls.Add(this.pbImage);
+            this.Controls.Add(this.lbPhone);
+            this.Controls.Add(this.tbPhone);
+            this.Controls.Add(this.lbEMail);
             this.Controls.Add(this.inputMailTeacher);
-            this.Controls.Add(this.inputbdTeacher);
-            this.Controls.Add(this.bdTeacher);
+            this.Controls.Add(this.tbBirthDate);
+            this.Controls.Add(this.lbBirthDate);
             this.Controls.Add(this.btCancel);
             this.Controls.Add(this.btOK);
-            this.Controls.Add(this.inputMidName);
-            this.Controls.Add(this.midNameTeachers);
-            this.Controls.Add(this.inputLsName);
-            this.Controls.Add(this.lsNameTeacher);
-            this.Controls.Add(this.inputFrName);
-            this.Controls.Add(this.nameTeacher);
+            this.Controls.Add(this.tbMiddleName);
+            this.Controls.Add(this.lbMiddleName);
+            this.Controls.Add(this.tbLastName);
+            this.Controls.Add(this.lbLastName);
+            this.Controls.Add(this.tbFirstName);
+            this.Controls.Add(this.lbFirstName);
             this.Name = "AddNewTeachers";
             this.Text = "AddNewTeachers";
+            ((System.ComponentModel.ISupportInitialize)(this.pbImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -202,19 +247,21 @@
 
         #endregion
 
-        private System.Windows.Forms.Label nameTeacher;
-        private System.Windows.Forms.TextBox inputFrName;
-        private System.Windows.Forms.Label lsNameTeacher;
-        private System.Windows.Forms.TextBox inputLsName;
-        private System.Windows.Forms.Label midNameTeachers;
-        private System.Windows.Forms.TextBox inputMidName;
+        private System.Windows.Forms.Label lbFirstName;
+        private System.Windows.Forms.TextBox tbFirstName;
+        private System.Windows.Forms.Label lbLastName;
+        private System.Windows.Forms.TextBox tbLastName;
+        private System.Windows.Forms.Label lbMiddleName;
+        private System.Windows.Forms.TextBox tbMiddleName;
         private System.Windows.Forms.Button btOK;
         private System.Windows.Forms.Button btCancel;
-        private System.Windows.Forms.Label bdTeacher;
-        private System.Windows.Forms.TextBox inputbdTeacher;
+        private System.Windows.Forms.Label lbBirthDate;
+        private System.Windows.Forms.TextBox tbBirthDate;
         private System.Windows.Forms.TextBox inputMailTeacher;
-        private System.Windows.Forms.Label mailTeacher;
-        private System.Windows.Forms.TextBox inputPhnTeacher;
-        private System.Windows.Forms.Label phoneTeacher;
+        private System.Windows.Forms.Label lbEMail;
+        private System.Windows.Forms.TextBox tbPhone;
+        private System.Windows.Forms.Label lbPhone;
+        private System.Windows.Forms.PictureBox pbImage;
+        private System.Windows.Forms.Button btBrowse;
     }
 }

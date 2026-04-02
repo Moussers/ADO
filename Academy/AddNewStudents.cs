@@ -22,18 +22,46 @@ namespace Academy
         }
         private void btnOk_Click(object sender, EventArgs e)
         {
-            string firstName = inputFrName.Text;
-            string lastName = inputLsName.Text;
+            string lastName = tbLastName.Text;
+            string firstName = tbFirstName.Text;
             if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName)) 
             {
-                MessageBox.Show("Поле имя или фамилия не заполнены!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Поле 'Имя' или 'Фамилия' не заполнены!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
-            string middleName = inputMidName.Text;
+            string middleName = tbMiddleName.Text;
             if (string.IsNullOrEmpty(middleName))
             {
                 middleName = null;
             }
-            //Connector.
+            string birthDate = tbBirthDate.Text;
+            if (string.IsNullOrEmpty(birthDate))
+            {
+                MessageBox.Show("Поле 'Дата рождения' не заполнено!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            string eMail = tbEMail.Text;
+            if (string.IsNullOrEmpty(eMail))
+            {
+                MessageBox.Show("Поле 'E-MAil' не заполнено!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            string numberPhone = tbPhone.Text;
+            if (string.IsNullOrEmpty(numberPhone))
+            {
+                MessageBox.Show("Поле 'Телефон' не заполнено!", "Ошибка!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else 
+            {
+                numberPhone += ",";
+            }
+            /*DataTable tableId = connector.Select("SELECT MAX(stud_id) FROM Students");
+            int studentId = Convert.ToInt32(tableId.Rows[0][0]) + 1;*/
+            //int studentId = 0;
+            connector.Select($"INSERT INTO Students (last_name, first_name, middle_name, birth_date, phone, email) " +
+                $"VALUES (N'{lastName}', N'{firstName}', N'{middleName}', N'{birthDate}', {numberPhone} N'{eMail}' )");
+            Close();
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {

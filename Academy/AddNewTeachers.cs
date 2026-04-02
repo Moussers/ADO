@@ -21,10 +21,10 @@ namespace Academy
         }
         private void btOK_Click(object sender, EventArgs e)
         {
-            string lastName = inputLsName.Text;
-            string firstName = inputFrName.Text;
-            string middleName = inputMidName.Text;
-            string birthDate = inputbdTeacher.Text;
+            string lastName = tbLastName.Text;
+            string firstName = tbFirstName.Text;
+            string middleName = tbMiddleName.Text;
+            string birthDate = tbBirthDate.Text;
             if (string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(firstName)) 
             {
                 MessageBox.Show("Поле имя или фамилия не заполнено!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -36,7 +36,7 @@ namespace Academy
                 //отправка null строки не вызовет ошибки со стороны T-SQL сервера,
                 //если это поле не имееет состояние NOT NULL
             }
-                string phone = inputPhnTeacher.Text;
+                string phone = tbPhone.Text;
             if (string.IsNullOrEmpty(phone))
             {
                 phone = "0,";
@@ -50,19 +50,24 @@ namespace Academy
             {
                 mail = null;
             }
-            DataTable dt = connector.Select("SELECT COUNT(*) FROM Teachers");
-            int new_id = Convert.ToInt32(dt.Rows[0][0])+1;
+            DataTable tableId = connector.Select("SELECT COUNT(*) FROM Teachers");
+            int teacherId = Convert.ToInt32(tableId.Rows[0][0])+1;
                 connector.Select($"IF NOT EXISTS (SELECT last_name,first_name FROM Teachers WHERE N'{lastName}' = last_name " +
                 $"AND N'{firstName}' = first_name) " +
                 $"BEGIN " +
                 $"INSERT INTO Teachers (teacher_id, last_name, first_name, middle_name, birth_date, phone, email ) " +
-                $"VALUES ({new_id}, N'{lastName}', N'{firstName}', N'{middleName}', N'{birthDate}', {phone} N'{mail}') " +
+                $"VALUES ({teacherId}, N'{lastName}', N'{firstName}', N'{middleName}', N'{birthDate}', {phone} N'{mail}') " +
                 $"END;");
             Close();
         }
         private void btCancel_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btBrowse_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
