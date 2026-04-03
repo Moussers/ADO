@@ -192,20 +192,21 @@
             // 
             this.buttonOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonOK.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonOK.Location = new System.Drawing.Point(499, 324);
+            this.buttonOK.Location = new System.Drawing.Point(472, 324);
             this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Size = new System.Drawing.Size(95, 41);
+            this.buttonOK.Size = new System.Drawing.Size(107, 41);
             this.buttonOK.TabIndex = 14;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
+            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
             // buttonCancel
             // 
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.buttonCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonCancel.Location = new System.Drawing.Point(600, 324);
+            this.buttonCancel.Location = new System.Drawing.Point(585, 324);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(95, 41);
+            this.buttonCancel.Size = new System.Drawing.Size(110, 41);
             this.buttonCancel.TabIndex = 15;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
@@ -232,6 +233,8 @@
             this.Controls.Add(this.labelFirstName);
             this.Controls.Add(this.labelLastName);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "HumanForm";
             this.ShowInTaskbar = false;
             this.Text = "HumanForm";
@@ -247,17 +250,17 @@
         private System.Windows.Forms.Label labelFirstName;
         private System.Windows.Forms.Label labelMiddleName;
         private System.Windows.Forms.Label labelBirthDate;
-        private System.Windows.Forms.TextBox tbLastName;
-        private System.Windows.Forms.TextBox tbFirstName;
-        private System.Windows.Forms.TextBox tbMiddleName;
-        private System.Windows.Forms.DateTimePicker dtpBirthDate;
         private System.Windows.Forms.PictureBox pbPhoto;
         private System.Windows.Forms.Button buttonBrowse;
         private System.Windows.Forms.Label labelPhone;
-        private System.Windows.Forms.TextBox tbEmail;
-        private System.Windows.Forms.TextBox tbPhone;
         private System.Windows.Forms.Label labelEnail;
         private System.Windows.Forms.Button buttonOK;
         private System.Windows.Forms.Button buttonCancel;
+        protected System.Windows.Forms.TextBox tbPhone;
+        protected System.Windows.Forms.TextBox tbEmail;
+        protected System.Windows.Forms.TextBox tbMiddleName;
+        protected System.Windows.Forms.DateTimePicker dtpBirthDate;
+        protected System.Windows.Forms.TextBox tbFirstName;
+        protected System.Windows.Forms.TextBox tbLastName;
     }
 }
