@@ -8,12 +8,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Configuration;
+using System.IO;
 
 namespace Academy
 {
     public abstract partial class HumanForm : Form
     {
-        OpenFileDialog openFile;
+        protected OpenFileDialog openFile;
         string pathToPicture;
         public HumanForm()
         {
@@ -32,10 +33,19 @@ namespace Academy
         {
             if (openFile.ShowDialog() == DialogResult.OK) 
             {
-                pathToPicture = openFile.FileName;
-                pbPhoto.Load(pathToPicture);
-                var pictureWidth = pbPhoto.ClientSize.Width;
-                var pictureHeight = pbPhoto.ClientSize.Height;
+                try
+                {
+                    pbPhoto.Image = new Bitmap(openFile.FileName);
+                    //StrightImage - растягивает картинку до краев.
+                    //Zoom - увеличивает пропорции картинки так чтобы её сохранить, но не растягивает. 
+
+
+                }
+                catch (Exception ex) 
+                {
+                    MessageBox.Show($"Ошибка при открытии выбранного файла {Path.GetFileName(openFile.FileName)}!",
+                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }

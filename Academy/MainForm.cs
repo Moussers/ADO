@@ -46,6 +46,7 @@ namespace Academy
         Dictionary<string, int> d_directions;
         Dictionary<string, int> d_groups;
         StudentForm studentForm;
+        UpdatesEntry updateEntry;
         public MainForm()
         {
             InitializeComponent();
@@ -107,6 +108,14 @@ namespace Academy
             int i = tabControl.SelectedIndex;
             tables[i].DataSource = connector.Select($"SELECT * FROM {tabControl.SelectedTab.Text}");
             toolStripStatusLabel.Text = $"{status_messages[i]}: {tables[i].RowCount - 1}";
+        }
+
+        private void dgvStudents_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int id = Convert.ToInt32(dgvStudents.Rows[dgvStudents.CurrentCell.RowIndex].Cells[0].Value);
+            int index = Convert.ToInt32(dgvStudents.Rows[dgvStudents.CurrentCell.RowIndex].Cells[1].Value);
+            updateEntry = new UpdatesEntry(id);
+            updateEntry.ShowDialog();
         }
     }
 }

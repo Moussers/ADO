@@ -135,7 +135,7 @@
             this.pbPhoto.Location = new System.Drawing.Point(499, 22);
             this.pbPhoto.Name = "pbPhoto";
             this.pbPhoto.Size = new System.Drawing.Size(191, 231);
-            this.pbPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pbPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbPhoto.TabIndex = 8;
             this.pbPhoto.TabStop = false;
             // 
@@ -175,7 +175,7 @@
             this.tbPhone.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.tbPhone.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
             this.tbPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbPhone.Location = new System.Drawing.Point(209, 221);
+            this.tbPhone.Location = new System.Drawing.Point(209, 226);
             this.tbPhone.Name = "tbPhone";
             this.tbPhone.Size = new System.Drawing.Size(251, 31);
             this.tbPhone.TabIndex = 12;

@@ -34,9 +34,9 @@ namespace Academy
             DataBase.connector.Insert
                 (
                 "Students",
-                "last_name, first_name, middle_name, birth_date, email, phone, [group]",
+                "last_name, first_name, middle_name, birth_date, email, phone, [group], photo",
                 $"{tbLastName.Text},{tbFirstName.Text},{tbMiddleName.Text},{dtpBirthDate.Value.ToString("yyyy-MM-dd")}, " +
-                $"{tbEmail.Text},{tbPhone.Text},{cbGroup.SelectedValue}"
+                $"{tbEmail.Text},{tbPhone.Text},{cbGroup.SelectedValue}, SELECT * FROM OPENROWSET(BULK '{openFile.FileName}', SINGLE_BLOB) as img"
                 );
             Close();
         }

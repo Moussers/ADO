@@ -69,7 +69,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox cbGroup;
+        protected System.Windows.Forms.ComboBox cbGroup;
         private System.Windows.Forms.Label labelGroup;
     }
 }
