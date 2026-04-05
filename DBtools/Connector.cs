@@ -124,24 +124,33 @@ AND CONSTRAINT_NAME LIKE N'PK_%';";
             connection.Close();
             return (int)Scalar($"SELECT MAX ({pk_name}) FROM {table}");
         }
-        public void Insert(string table, string fields, string values)
+        public void Insert(string table, string[] fields, string[] values)
         {
             string condition = "";
-            string[] s_fileds = fields.Split(',');
-            string[] s_values = values.Split(',');
-            string parsed_values = $"N'{s_values[0]}',";
+            string[] s_fileds = fields;
+            string[] s_values = values;
+            string parsed_values = $"{s_values[0]},";
             for (int i = 1; i < s_fileds.Length; i++)
             {
-                condition += $" {s_fileds[i]}=N'{s_values[i]}' ";
-                parsed_values += s_values[i][0] != 'N' && s_values[i][1] != '\'' ? $"N'{s_values[i]}'" : s_values[i];
+                condition += $" {s_fileds[i]}={s_values[i]}";
+                    parsed_values += s_values[i];
                 if (i != s_fileds.Length - 1)
                 {
                     condition += "AND";
                     parsed_values += ",";
                 }
             }
+            string new_field = "";
+            for (int i = 0; i < s_fileds.Length; ++i)
+            {
+                new_field += s_fileds[i].ToString();
+                if (i != s_fileds.Length - 1)
+                {
+                    new_field += ",";
+                }
+            }
             string cmd = $"IF NOT EXISTS(SELECT {GetPrimaryKeyColumnName(table)} FROM {table} WHERE {condition})";
-            cmd += $"INSERT {table}({fields}) VALUES ({parsed_values})";
+            cmd += $"INSERT {table}({new_field}) VALUES ({parsed_values})";
             Insert(cmd);
         }
     }

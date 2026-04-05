@@ -13,10 +13,12 @@ namespace ADO
             Console.WriteLine(connector.GetPrimaryKeyColumnName("Directors"));
             Console.WriteLine(connector.GetPrimaryKeyColumnName("Movies"));
             //connector.Insert($@"INSERT Directors (director_id, first_name,last_name) VALUES ({connector.GetNextPrimaryKey("Directors")}, N'Guy', N'Richie');");
+            string[] names = { "director_id","first_name","last_name" };
+            string[] values = { $"{connector.GetNextPrimaryKey("Directors")}","John","Singleton" };
             connector.Insert(
                 "Directors", 
-                "director_id,first_name,last_name",
-                $"{connector.GetNextPrimaryKey("Directors")},John,Singleton"
+                names,
+                values
                 );
             Console.WriteLine($"PK Max:\t{connector.GetMaxPrimaryKey("Directors")}");
             //string cmd = "SELECT movie_id, title, release_date, first_name, last_name FROM Movies, Directors WHERE director = director_id";

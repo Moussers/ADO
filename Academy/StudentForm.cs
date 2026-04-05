@@ -31,12 +31,15 @@ namespace Academy
         }
         protected override void buttonOK_Click(object sender, EventArgs e)
         {
+            string[] names = { "last_name", "first_name", "middle_name", "birth_date", "email", "phone", "[group]", "photo" };
+            string[] values = {
+                $"N'{tbLastName.Text}'",$"N'{tbFirstName.Text}'",$"N'{tbMiddleName.Text}'",$"N'{dtpBirthDate.Value.ToString("yyyy-MM-dd")}'", 
+                $"N'{tbEmail.Text}'",$"N'{tbPhone.Text}'",$"N'{cbGroup.SelectedValue}'", $"(SELECT * FROM OPENROWSET(BULK '{openFile.FileName}', SINGLE_BLOB) as img)"};
             DataBase.connector.Insert
                 (
                 "Students",
-                "last_name, first_name, middle_name, birth_date, email, phone, [group], photo",
-                $"{tbLastName.Text},{tbFirstName.Text},{tbMiddleName.Text},{dtpBirthDate.Value.ToString("yyyy-MM-dd")}, " +
-                $"{tbEmail.Text},{tbPhone.Text},{cbGroup.SelectedValue}, SELECT * FROM OPENROWSET(BULK '{openFile.FileName}', SINGLE_BLOB) as img"
+                names,
+                values
                 );
             Close();
         }

@@ -96,20 +96,24 @@ AND CONSTRAINT_NAME LIKE N'PK_%';";
             connection.Close();
             return (int)Scalar($"SELECT MAX ({pk_name}) FROM {table}");
         }
-        public void Insert(string table, string fields, string values) 
+        public void Insert(string table, string[] fields, string[] values) 
         {
             string condition = "";
-            string[] s_fileds = fields.Split(',');
-            string[] s_values = values.Split(',');
-            string parsed_values = $"N'{s_values[0]}',";
+            string[] s_fileds = fields;
+            string[] s_values = values;
+            string parsed_values = $"{s_values[0]},";
             for (int i = 1; i < s_fileds.Length; i++) 
             {
-                condition += $" {s_fileds[i]}=N'{s_values[i]}' ";
-                if (s_values[i].Length > 1)
+                condition += $" {s_fileds[i]}={s_values[i]}";
+                /*if (s_values[i].Length > 1)
                 {
                     parsed_values += s_values[i][0] != 'N' && s_values[i][1] != '\'' ? $"N'{s_values[i]}'" : s_values[i];
+                //Тернарный оператор который проверяет начинается ли строка с N и не идёт после неё кавычка, если нет, то 
+                //ставит N + кавычку. Но при этом делит строки при составлении запроса, что приводит к ошибке.
                 }
-                else parsed_values = s_values[i];
+                else {*/
+                    parsed_values += s_values[i]; 
+                //}
                 if (i != s_fileds.Length - 1)
                 {
                     condition += "AND";

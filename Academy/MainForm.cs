@@ -113,7 +113,6 @@ namespace Academy
         private void dgvStudents_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             int id = Convert.ToInt32(dgvStudents.Rows[dgvStudents.CurrentCell.RowIndex].Cells[0].Value);
-            int index = Convert.ToInt32(dgvStudents.Rows[dgvStudents.CurrentCell.RowIndex].Cells[1].Value);
             updateEntry = new UpdatesEntry(id);
             updateEntry.ShowDialog();
         }
