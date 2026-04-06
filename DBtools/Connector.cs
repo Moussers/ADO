@@ -133,24 +133,23 @@ AND CONSTRAINT_NAME LIKE N'PK_%';";
             for (int i = 1; i < s_fileds.Length; i++)
             {
                 condition += $" {s_fileds[i]}={s_values[i]}";
-                    parsed_values += s_values[i];
+                /*if (s_values[i].Length > 1)
+                {
+                    parsed_values += s_values[i][0] != 'N' && s_values[i][1] != '\'' ? $"N'{s_values[i]}'" : s_values[i];
+                //Тернарный оператор который проверяет начинается ли строка с N и не идёт после неё кавычка, если нет, то 
+                //ставит N + кавычку. Но при этом делит строки при составлении запроса, что приводит к ошибке.
+                }
+                else {*/
+                parsed_values += s_values[i];
+                //}
                 if (i != s_fileds.Length - 1)
                 {
                     condition += "AND";
                     parsed_values += ",";
                 }
             }
-            string new_field = "";
-            for (int i = 0; i < s_fileds.Length; ++i)
-            {
-                new_field += s_fileds[i].ToString();
-                if (i != s_fileds.Length - 1)
-                {
-                    new_field += ",";
-                }
-            }
             string cmd = $"IF NOT EXISTS(SELECT {GetPrimaryKeyColumnName(table)} FROM {table} WHERE {condition})";
-            cmd += $"INSERT {table}({new_field}) VALUES ({parsed_values})";
+            cmd += $"INSERT {table}({fields}) VALUES ({parsed_values})";
             Insert(cmd);
         }
     }

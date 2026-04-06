@@ -31,6 +31,8 @@ namespace Academy
          }
         protected override void buttonOK_Click(object sender, EventArgs e)
         {
+            string lastName = tbLastName.Text;
+            string studId = DataBase.connector.Select($"SELECT stud_id FROM Students WHERE last_name = N'{lastName}'").Rows[0][0].ToString();
             DataBase.connector.Select($"Update Students SET " +
                 $"last_name = N'{tbLastName.Text}', " +
                 $"first_name = N'{tbFirstName.Text}', " +
@@ -39,7 +41,8 @@ namespace Academy
                 $"email = N'{tbEmail.Text}', " +
                 $"phone = N'{tbPhone.Text}', " +
                 $"[group] = N'{cbGroup.SelectedValue}' " +
-                $"WHERE stud_id = {stud_id}");
+                $"WHERE stud_id = {studId}"
+                );
             Close();
         }
         private int GetIndexFromTable(DataTable groups, string groupName) 
