@@ -129,11 +129,15 @@ AND CONSTRAINT_NAME LIKE N'PK_%';";
             string condition = "";
             string[] s_fileds = fields.Split(',');
             string[] s_values = values.Split(',');
-            string parsed_values = $"N'{s_values[0]}',";
-            for (int i = 1; i < s_fileds.Length; i++)
+            string parsed_fields = "";
+            string parsed_values = "";
+            for (int i = s_fileds[0].Contains("_id") ? 1 : 0; i < s_fileds.Length; i++ )
             {
+                if (s_values[i] == "" || s_values[i] == " ") continue;
                 condition += $" {s_fileds[i]}=N'{s_values[i]}' ";
-                parsed_values += s_values[i][0] != 'N' && s_values[i][1] != '\'' ? $"N'{s_values[i]}'" : s_values[i];
+                parsed_fields += s_fileds[i];
+                if(i != s_fileds.Length - 1) parsed_fields += ",";
+                parsed_values += s_values[i][0] != 'N' && s_values[i].Length > 1 && s_values[i][1] != '\'' ? $"N'{s_values[i]}'": s_values[i];
                 if (i != s_fileds.Length - 1)
                 {
                     condition += "AND";
@@ -141,7 +145,7 @@ AND CONSTRAINT_NAME LIKE N'PK_%';";
                 }
             }
             string cmd = $"IF NOT EXISTS(SELECT {GetPrimaryKeyColumnName(table)} FROM {table} WHERE {condition})";
-            cmd += $"INSERT {table}({fields}) VALUES ({parsed_values})";
+            cmd += $"INSERT {table}({parsed_fields}) VALUES ({parsed_values})";
             Insert(cmd);
         }
     }
