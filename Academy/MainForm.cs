@@ -99,8 +99,7 @@ namespace Academy
         {
             studentForm = new StudentForm();
             studentForm.ShowDialog();
-            UpdateInfo();
-            
+            UpdateInfo();            
         }
 
         private void UpdateInfo() 
@@ -115,6 +114,7 @@ namespace Academy
             int id = Convert.ToInt32(dgvStudents.Rows[dgvStudents.CurrentCell.RowIndex].Cells[0].Value);
             updateEntry = new UpdatesEntry(id);
             updateEntry.ShowDialog();
+            UpdateInfo();
         }
     }
 }

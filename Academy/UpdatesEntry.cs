@@ -14,8 +14,11 @@ namespace Academy
     public partial class UpdatesEntry : StudentForm
     {
         DataTable curGroup;
+        private int ID { set; get; }
+
         public UpdatesEntry(int stud_id)
         {
+            ID = stud_id;
             InitializeComponent();
             tbLastName.Text = DataBase.connector.Select($"SELECT last_name FROM Students WHERE stud_id = {stud_id}").Rows[0][0].ToString();
             tbFirstName.Text = DataBase.connector.Select($"SELECT first_name FROM Students WHERE stud_id = {stud_id}").Rows[0][0].ToString();
@@ -31,8 +34,6 @@ namespace Academy
          }
         protected override void buttonOK_Click(object sender, EventArgs e)
         {
-            string lastName = tbLastName.Text;
-            string studId = DataBase.connector.Select($"SELECT stud_id FROM Students WHERE last_name = N'{lastName}'").Rows[0][0].ToString();
             DataBase.connector.Select($"Update Students SET " +
                 $"last_name = N'{tbLastName.Text}', " +
                 $"first_name = N'{tbFirstName.Text}', " +
@@ -41,7 +42,8 @@ namespace Academy
                 $"email = N'{tbEmail.Text}', " +
                 $"phone = N'{tbPhone.Text}', " +
                 $"[group] = N'{cbGroup.SelectedValue}' " +
-                $"WHERE stud_id = {studId}"
+                //$"photo = (Select * FROM OPENROWSET(BULK '{openFile.FileName}', SINGLE_BLOB) as img)" +
+                $"WHERE stud_id = {ID}"
                 );
             Close();
         }

@@ -148,8 +148,18 @@ AND CONSTRAINT_NAME LIKE N'PK_%';";
                     parsed_values += ",";
                 }
             }
+            string fld = "";
+            for (int i = 0; i < fields.Length; ++i)
+            {
+                fld += fields[i];
+                if (i < fields.Length - 1)
+                {
+                    fld += ',';
+                }
+                //Добавление запятой после названия каждого поля таблицы
+            }
             string cmd = $"IF NOT EXISTS(SELECT {GetPrimaryKeyColumnName(table)} FROM {table} WHERE {condition})";
-            cmd += $"INSERT {table}({fields}) VALUES ({parsed_values})";
+            cmd += $"INSERT INTO {table}({fld}) VALUES ({parsed_values})";
             Insert(cmd);
         }
     }
