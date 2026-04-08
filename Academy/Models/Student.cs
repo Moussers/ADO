@@ -20,6 +20,11 @@ namespace Academy.Models
         {
             this.group = group;
         }
+        
+        public Student(Human human, int group) : base(human) 
+        {
+            this.group = group;
+        }
         public override string GetNames()
         {
             return base.GetNames()+",[group]";
