@@ -9,7 +9,7 @@ namespace Academy.Models
 {
     internal class Student: Human
     {
-        int group;
+        internal int group;
         public Student
             (
             string last_name, string first_name,
@@ -24,6 +24,10 @@ namespace Academy.Models
         public Student(Human human, int group) : base(human) 
         {
             this.group = group;
+        }
+        public Student(object[] values) : base(values)
+        {
+            this.group = Convert.ToInt32(values[8]);
         }
         public override string GetNames()
         {
