@@ -250,7 +250,6 @@
         private System.Windows.Forms.Label labelFirstName;
         private System.Windows.Forms.Label labelMiddleName;
         private System.Windows.Forms.Label labelBirthDate;
-        private System.Windows.Forms.PictureBox pbPhoto;
         private System.Windows.Forms.Button buttonBrowse;
         private System.Windows.Forms.Label labelPhone;
         private System.Windows.Forms.Label labelEnail;
@@ -262,5 +261,6 @@
         protected System.Windows.Forms.DateTimePicker dtpBirthDate;
         protected System.Windows.Forms.TextBox tbFirstName;
         protected System.Windows.Forms.TextBox tbLastName;
+        protected System.Windows.Forms.PictureBox pbPhoto;
     }
 }
