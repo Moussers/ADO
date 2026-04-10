@@ -39,12 +39,23 @@ namespace Academy
                 labelID.Text=="" ? 0: Convert.ToInt32(labelID.Text.Split(':').Last()),
                 tbLastName.Text,
                 tbFirstName.Text,
-                tbLastName.Text,
+                tbMiddleName.Text,
                 dtpBirthDate.Value.ToString("yyyy-MM-dd"),
                 tbEmail.Text,
                 tbPhone.Text,
                 pbPhoto.Image
                 );
+        }
+
+        private void buttonBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = 
+                "JPG files (*.jpg)|*.jpg|PNG files(*.png)|*.png|JPEG files(*jpeg)|*jpeg|All image files|*.png;*.jpg| All files(*.*)|*.*";
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                pbPhoto.Image = Image.FromFile(dialog.FileName);
+            }
         }
     }
 }

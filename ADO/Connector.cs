@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Windows.Markup;
 using System.Data;
+using System.IO;
 namespace ADO
 {
     internal class Connector
@@ -136,5 +137,6 @@ AND CONSTRAINT_NAME LIKE N'PK_%';";
             command.ExecuteNonQuery();
             connection.Close();
         }
+        
     }
 }

@@ -136,6 +136,7 @@
             this.pbPhoto.Location = new System.Drawing.Point(499, 22);
             this.pbPhoto.Name = "pbPhoto";
             this.pbPhoto.Size = new System.Drawing.Size(191, 231);
+            this.pbPhoto.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbPhoto.TabIndex = 8;
             this.pbPhoto.TabStop = false;
             // 
@@ -148,6 +149,7 @@
             this.buttonBrowse.TabIndex = 9;
             this.buttonBrowse.Text = "Обзор";
             this.buttonBrowse.UseVisualStyleBackColor = true;
+            this.buttonBrowse.Click += new System.EventHandler(this.buttonBrowse_Click);
             // 
             // labelPhone
             // 

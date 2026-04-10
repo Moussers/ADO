@@ -18,12 +18,12 @@ namespace Academy
         {
             InitializeComponent();
 
-            tbLastName.Text = "Жук";
-            tbFirstName.Text = "Василий";
-            tbMiddleName.Text = "Петрович";
-            dtpBirthDate.Text = "1977.10.24";
-            tbEmail.Text = "bazilik_spb@mail.ru";
-            tbPhone.Text = "+7(911)024-56-78";
+            //tbLastName.Text = "Жук";
+            //tbFirstName.Text = "Василий";
+            //tbMiddleName.Text = "Петрович";
+            //dtpBirthDate.Text = "1977.10.24";
+            //tbEmail.Text = "bazilik_spb@mail.ru";
+            //tbPhone.Text = "+7(911)024-56-78";
 
             DataTable groups = DataBase.connector.Select("SELECT * FROM Groups");
             cbGroup.DataSource = groups;
@@ -38,6 +38,7 @@ namespace Academy
             human = student;
             Extract();
             cbGroup.SelectedIndex = student.group;
+            if(student.photo != null) pbPhoto.Image = DataBase.connector.DownloadPhoto("Students", "photo", student.id);
         }
         protected override void buttonOK_Click(object sender, EventArgs e)
         {
