@@ -124,6 +124,13 @@ AND CONSTRAINT_NAME LIKE N'PK_%';";
             connection.Close();
             return (int)Scalar($"SELECT MAX ({pk_name}) FROM {table}");
         }
+        public void Update(string cmd)
+        {
+            SqlCommand command = new SqlCommand(cmd, connection);
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
+        }
         public void Insert(string table, string fields, string values)
         {
             string condition = "";
@@ -147,6 +154,14 @@ AND CONSTRAINT_NAME LIKE N'PK_%';";
             string cmd = $"IF NOT EXISTS(SELECT {GetPrimaryKeyColumnName(table)} FROM {table} WHERE {condition})";
             cmd += $"INSERT {table}({parsed_fields}) VALUES ({parsed_values})";
             Insert(cmd);
+        }
+        public void UploadPhoto(byte[] image, int id, string field, string table)
+        {
+            string cmd = $"UPDATE {table} SET {field}=@image WHERE {GetPrimaryKeyColumnName(table)}={id}";
+            SqlCommand command = new SqlCommand(cmd, connection);
+            command.Parameters.Add("@image", SqlDbType.VarBinary).Value = image;
+            command.ExecuteNonQuery();
+            connection.Close();
         }
     }
 }

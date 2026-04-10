@@ -43,7 +43,12 @@ namespace Academy
         {
             base.buttonOK_Click(sender, e);
             student = new Models.Student(human,Convert.ToInt32(cbGroup.SelectedIndex));
-            DataBase.connector.Insert("Students", $"{student.GetNames()}",$"{student.GetValues()}");
+            //object id = (int)DataBase.connector.Scalar($"SELECT stud_id FROM Students WHERE {student.GetCondition()}");
+            if (student.id == 0) DataBase.connector.Insert("Students", $"{student.GetNames()}", $"{student.GetValues()}");
+            else DataBase.connector.Update($"UPDATE Students SET {student.GetUpdateString()} WHERE stud_id={student.id}");
+            if(student.photo != null) 
+                DataBase.connector.UploadPhoto(student.SerializePhoto(),student.id,"photo","Students");
+
             //DataBase.connector.Insert
             //    (
             //    "Students",
