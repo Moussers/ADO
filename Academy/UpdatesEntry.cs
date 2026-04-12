@@ -41,8 +41,8 @@ namespace Academy
                 $"birth_date = N'{dtpBirthDate.Value.ToString("yyyy-MM-dd")}', " +
                 $"email = N'{tbEmail.Text}', " +
                 $"phone = N'{tbPhone.Text}', " +
-                $"[group] = N'{cbGroup.SelectedValue}' " +
-                //$"photo = (Select * FROM OPENROWSET(BULK '{openFile.FileName}', SINGLE_BLOB) as img)" +
+                $"[group] = N'{cbGroup.SelectedValue}', " +
+                $"photo = (Select BulkColumn FROM OPENROWSET(BULK '{openFile.FileName}', SINGLE_BLOB) as img)" +
                 $"WHERE stud_id = {ID}"
                 );
             Close();
