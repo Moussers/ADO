@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,15 +38,25 @@ namespace Academy
             student = new Models.Student(data.Rows[0].ItemArray);
             human = student;
             Extract();
-            cbGroup.SelectedIndex = student.group;
-            if(student.photo != null) pbPhoto.Image = DataBase.connector.DownloadPhoto("Students", "photo", student.id);
+            DataTable grp = DataBase.connector.Select("group_id", "Groups", "");
+            int i = -1;
+            for(int j = 0; j < grp.Rows.Count; ++j)
+            {
+                if (grp.Rows[j][0].ToString() == student.group.ToString())
+                    i = j;
+            }
+            cbGroup.SelectedIndex = i;
+            //if(student.photo != null) 
+            pbPhoto.Image = DataBase.connector.DownloadPhoto("Students", "photo", student.id);
         }
         protected override void buttonOK_Click(object sender, EventArgs e)
         {
+            MemoryStream ms = new MemoryStream();
             base.buttonOK_Click(sender, e);
             student = new Models.Student(human,Convert.ToInt32(cbGroup.SelectedIndex));
-            //object id = (int)DataBase.connector.Scalar($"SELECT stud_id FROM Students WHERE {student.GetCondition()}");
-            if (student.id == 0) DataBase.connector.Insert("Students", $"{student.GetNames()}", $"{student.GetValues()}");
+            student.photo.Save(ms, student.photo.RawFormat);
+            byte[] photoBytes = ms.ToArray();
+            if (student.id == 0) DataBase.connector.Insert("Students", $"{student.GetNames()}", $"{student.GetValues()}",photoBytes);
             else DataBase.connector.Update($"UPDATE Students SET {student.GetUpdateString()} WHERE stud_id={student.id}");
             if(student.photo != null) 
                 DataBase.connector.UploadPhoto(student.SerializePhoto(),student.id,"photo","Students");

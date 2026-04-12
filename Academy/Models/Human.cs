@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 using System.IO;
+using System.Windows.Forms;
 namespace Academy.Models
 {
     internal class Human
@@ -63,11 +64,11 @@ namespace Academy.Models
         }
         public virtual string GetNames() 
         {
-            return $"last_name,first_name,middle_name,birth_date,email,phone";
+            return $"last_name,first_name,middle_name,birth_date,email,phone,photo";
         }
         public virtual string GetValues()
         {
-            return $"{last_name},{first_name},{middle_name},{birth_date},{email},{phone}";
+            return $"{last_name},{first_name},{middle_name},{birth_date},{email},{phone},(SELECT CONVERT(VARBINARY(MAX),@photo,0))";
         }
         public virtual string GetCondition()
         {

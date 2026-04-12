@@ -46,6 +46,7 @@ namespace Academy
         Dictionary<string, int> d_directions;
         Dictionary<string, int> d_groups;
         StudentForm studentForm;
+        TeacherForm teacherForm;
         public MainForm()
         {
             InitializeComponent();
@@ -110,6 +111,12 @@ namespace Academy
             {
                 tabControl_SelectedIndexChanged(tabControl, null);
             }
+        }
+
+        private void buttonAddTeacher_Click(object sender, EventArgs e)
+        {
+            TeacherForm form = new TeacherForm();
+            form.ShowDialog();
         }
     }
 }

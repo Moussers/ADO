@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -102,6 +103,26 @@ namespace DBtools
             }
             connection.Close();
         }
+        //public void Insert(string cmd, byte[] data)
+        //{
+        //    SqlCommand command = new SqlCommand(cmd, connection);
+        //    connection.Open();
+        //    try
+        //    {
+        //        command.Parameters.Add(new SqlParameter("@photo", data));
+        //        command.ExecuteNonQuery();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.Source);
+        //        Console.WriteLine(ex.Message);
+        //        if (ex.GetType() == typeof(SqlException) && ex.Message.Contains("id"))
+        //        {
+        //            Console.WriteLine("Good");
+        //        }
+        //    }
+        //    connection.Close();
+        //}
         public int GetNextPrimaryKey(string table)
         {
             return GetMaxPrimaryKey(table) + 1;
@@ -156,6 +177,30 @@ AND CONSTRAINT_NAME LIKE N'PK_%';";
             string cmd = $"IF NOT EXISTS(SELECT {GetPrimaryKeyColumnName(table)} FROM {table} WHERE {condition})";
             cmd += $"INSERT {table}({parsed_fields}) VALUES ({parsed_values})";
             Insert(cmd);
+        }
+        public void Insert(string table, string fields, string values, byte[] data)
+        {
+            string condition = "";
+            string[] s_fileds = fields.Split(',');
+            string[] s_values = values.Split(',');
+            string parsed_fields = "";
+            string parsed_values = "";
+            for (int i = s_fileds[0].Contains("_id") ? 1 : 0; i < s_fileds.Length; i++)
+            {
+                if (s_values[i] == "" || s_values[i] == " ") continue;
+                condition += $" {s_fileds[i]}=N'{s_values[i]}' ";
+                parsed_fields += s_fileds[i];
+                if (i != s_fileds.Length - 1) parsed_fields += ",";
+                parsed_values += s_values[i][0] != 'N' && s_values[i].Length > 1 && s_values[i][1] != '\'' ? $"N'{s_values[i]}'" : s_values[i];
+                if (i != s_fileds.Length - 1)
+                {
+                    condition += "AND";
+                    parsed_values += ",";
+                }
+            }
+            string cmd = $"IF NOT EXISTS(SELECT {GetPrimaryKeyColumnName(table)} FROM {table} WHERE {condition})";
+            cmd += $"INSERT {table}({parsed_fields}) VALUES ({parsed_values})";
+            Insert(cmd, data);
         }
         public void UploadPhoto(byte[] image, int id, string field, string table)
         {
