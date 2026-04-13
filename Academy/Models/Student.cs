@@ -26,6 +26,7 @@ namespace Academy.Models
         {
             this.group = group;
         }
+        //Конструктор копирования
         public Student(object[] values) : base(values)
         {
             this.group = Convert.ToInt32(values[8]);
@@ -41,10 +42,6 @@ namespace Academy.Models
         public override string GetCondition()
         {
             return base.GetCondition() + $" AND [group]={group}";
-        }
-        public string GetUpdateString() 
-        {
-            return GetCondition().Replace(" AND ", ",");
         }
     }
 }

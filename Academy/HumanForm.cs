@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+//System.Drawing - отвечает за Image
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;

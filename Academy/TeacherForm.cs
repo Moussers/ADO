@@ -25,9 +25,28 @@ namespace Academy
         }
         protected override void buttonOK_Click(object sender, EventArgs e)
         {
-            MemoryStream ms = new MemoryStream();
             base.buttonOK_Click(sender, e);
-            //teacher = new Models.Teacher(tbSalary.Text);
+            teacher = new Models.Teacher
+                (
+                human, 
+                dtpWorkSince.Value.ToString("yyyy-MM-dd"), 
+                Convert.ToDecimal(tbRate.Text)
+                );
+            if (teacher.id == 0)
+            {
+                teacher.id = Convert.ToInt32
+                (
+                DataBase.connector.Scalar($"INSERT Teachers({teacher.GetNames()}) VALUES ({teacher.GetValues()});SELECT SCOPE_IDENTITY()")
+                );
+            }
+            else
+            {
+                DataBase.connector.Update($"UPDATE Teacher SET {teacher.GetUpdateString()} WHERE teacher_id={teacher.id}");
+            }
+            if (teacher.photo != null) 
+            {
+                DataBase.connector.UploadPhoto(teacher.SerializePhoto(), teacher.id, "photo", "Teachers");
+            }
         }
     }
 }

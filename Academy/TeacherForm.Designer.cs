@@ -28,36 +28,61 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbSalary = new System.Windows.Forms.Label();
-            this.tbSalary = new System.Windows.Forms.TextBox();
+            this.labelWorkSince = new System.Windows.Forms.Label();
+            this.dtpWorkSince = new System.Windows.Forms.DateTimePicker();
+            this.tbRate = new System.Windows.Forms.TextBox();
+            this.labelRate = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pbPhoto)).BeginInit();
             this.SuspendLayout();
             // 
-            // lbSalary
+            // labelWorkSince
             // 
-            this.lbSalary.AutoSize = true;
-            this.lbSalary.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lbSalary.Location = new System.Drawing.Point(79, 274);
-            this.lbSalary.Name = "lbSalary";
-            this.lbSalary.Size = new System.Drawing.Size(113, 25);
-            this.lbSalary.TabIndex = 17;
-            this.lbSalary.Text = "Зарплата:";
+            this.labelWorkSince.AutoSize = true;
+            this.labelWorkSince.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelWorkSince.Location = new System.Drawing.Point(57, 266);
+            this.labelWorkSince.Name = "labelWorkSince";
+            this.labelWorkSince.Size = new System.Drawing.Size(129, 25);
+            this.labelWorkSince.TabIndex = 17;
+            this.labelWorkSince.Text = "Работает с:";
             // 
-            // tbSalary
+            // dtpWorkSince
             // 
-            this.tbSalary.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.tbSalary.Location = new System.Drawing.Point(209, 279);
-            this.tbSalary.Name = "tbSalary";
-            this.tbSalary.Size = new System.Drawing.Size(251, 31);
-            this.tbSalary.TabIndex = 18;
+            this.dtpWorkSince.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.dtpWorkSince.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpWorkSince.Location = new System.Drawing.Point(209, 268);
+            this.dtpWorkSince.Name = "dtpWorkSince";
+            this.dtpWorkSince.Size = new System.Drawing.Size(251, 31);
+            this.dtpWorkSince.TabIndex = 18;
+            // 
+            // tbRate
+            // 
+            this.tbRate.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.tbRate.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
+            this.tbRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.tbRate.Location = new System.Drawing.Point(210, 307);
+            this.tbRate.Name = "tbRate";
+            this.tbRate.Size = new System.Drawing.Size(250, 31);
+            this.tbRate.TabIndex = 19;
+            // 
+            // labelRate
+            // 
+            this.labelRate.AutoSize = true;
+            this.labelRate.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelRate.Location = new System.Drawing.Point(15, 307);
+            this.labelRate.Name = "labelRate";
+            this.labelRate.Size = new System.Drawing.Size(171, 25);
+            this.labelRate.TabIndex = 20;
+            this.labelRate.Text = "Ставка за пару:";
             // 
             // TeacherForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.tbSalary);
-            this.Controls.Add(this.lbSalary);
+            this.ClientSize = new System.Drawing.Size(728, 389);
+            this.Controls.Add(this.labelRate);
+            this.Controls.Add(this.tbRate);
+            this.Controls.Add(this.dtpWorkSince);
+            this.Controls.Add(this.labelWorkSince);
             this.Name = "TeacherForm";
             this.Text = "TeacherForm";
             this.Controls.SetChildIndex(this.tbLastName, 0);
@@ -67,8 +92,10 @@
             this.Controls.SetChildIndex(this.pbPhoto, 0);
             this.Controls.SetChildIndex(this.tbEmail, 0);
             this.Controls.SetChildIndex(this.tbPhone, 0);
-            this.Controls.SetChildIndex(this.lbSalary, 0);
-            this.Controls.SetChildIndex(this.tbSalary, 0);
+            this.Controls.SetChildIndex(this.labelWorkSince, 0);
+            this.Controls.SetChildIndex(this.dtpWorkSince, 0);
+            this.Controls.SetChildIndex(this.tbRate, 0);
+            this.Controls.SetChildIndex(this.labelRate, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pbPhoto)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -77,7 +104,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Label lbSalary;
-        private System.Windows.Forms.TextBox tbSalary;
+        private System.Windows.Forms.Label labelWorkSince;
+        private System.Windows.Forms.DateTimePicker dtpWorkSince;
+        private System.Windows.Forms.TextBox tbRate;
+        private System.Windows.Forms.Label labelRate;
     }
 }

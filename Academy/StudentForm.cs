@@ -46,7 +46,6 @@ namespace Academy
                     i = j;
             }
             cbGroup.SelectedIndex = i;
-            //if(student.photo != null) 
             pbPhoto.Image = DataBase.connector.DownloadPhoto("Students", "photo", student.id);
         }
         protected override void buttonOK_Click(object sender, EventArgs e)
