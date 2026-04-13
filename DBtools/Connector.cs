@@ -204,7 +204,6 @@ AND CONSTRAINT_NAME LIKE N'PK_%';";
         }
         public void UploadPhoto(byte[] image, int id, string field, string table)
         {
-            //UploadPhoto проверить
             string cmd = $"UPDATE {table} SET {field}=@image WHERE {GetPrimaryKeyColumnName(table)}={id}";
             SqlCommand command = new SqlCommand(cmd, connection);
             command.Parameters.Add("@image", SqlDbType.VarBinary).Value = image;
