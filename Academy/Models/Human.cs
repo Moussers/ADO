@@ -57,6 +57,7 @@ namespace Academy.Models
         }
         public byte[] SerializePhoto()
         {
+            //SerializePhoto проверить
             if (photo == null) return null;
             MemoryStream ms = new MemoryStream();
             photo.Save(ms, photo.RawFormat);
@@ -64,11 +65,11 @@ namespace Academy.Models
         }
         public virtual string GetNames() 
         {
-            return $"last_name,first_name,middle_name,birth_date,email,phone,photo";
+            return $"last_name,first_name,middle_name,birth_date,email,phone";
         }
         public virtual string GetValues()
         {
-            return $"{last_name},{first_name},{middle_name},{birth_date},{email},{phone},(SELECT CONVERT(VARBINARY(MAX),@photo,0))";
+            return $"{last_name},{first_name},{middle_name},{birth_date},{email},{phone}";
         }
         public virtual string GetCondition()
         {

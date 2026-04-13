@@ -51,12 +51,9 @@ namespace Academy
         }
         protected override void buttonOK_Click(object sender, EventArgs e)
         {
-            MemoryStream ms = new MemoryStream();
             base.buttonOK_Click(sender, e);
             student = new Models.Student(human,Convert.ToInt32(cbGroup.SelectedIndex));
-            student.photo.Save(ms, student.photo.RawFormat);
-            byte[] photoBytes = ms.ToArray();
-            if (student.id == 0) DataBase.connector.Insert("Students", $"{student.GetNames()}", $"{student.GetValues()}",photoBytes);
+            if (student.id == 0) DataBase.connector.Insert("Students", $"{student.GetNames()}", $"{student.GetValues()}");
             else DataBase.connector.Update($"UPDATE Students SET {student.GetUpdateString()} WHERE stud_id={student.id}");
             if(student.photo != null) 
                 DataBase.connector.UploadPhoto(student.SerializePhoto(),student.id,"photo","Students");
