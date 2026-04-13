@@ -200,7 +200,7 @@ AND CONSTRAINT_NAME LIKE N'PK_%';";
             }
             string cmd = $"IF NOT EXISTS(SELECT {GetPrimaryKeyColumnName(table)} FROM {table} WHERE {condition})";
             cmd += $"INSERT {table}({parsed_fields}) VALUES ({parsed_values})";
-            Insert(cmd, data);
+            Insert(cmd);
         }
         public void UploadPhoto(byte[] image, int id, string field, string table)
         {

@@ -100,8 +100,10 @@ namespace Academy
         private void buttonAddStudent_Click(object sender, EventArgs e)
         {
             studentForm = new StudentForm();
-            if (studentForm.ShowDialog() == DialogResult.OK) 
+            if (studentForm.ShowDialog() == DialogResult.OK)
+            {
                 tabControl_SelectedIndexChanged(tabControl, null);
+            }
         }
 
         private void dgvStudents_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -114,6 +116,15 @@ namespace Academy
         }
 
         private void buttonAddTeacher_Click(object sender, EventArgs e)
+        {
+            TeacherForm form = new TeacherForm();
+            if (form.ShowDialog() == DialogResult.OK) 
+            {
+                tabControl_SelectedIndexChanged(tabControl, null);
+            }
+        }
+
+        private void dgvTeachers_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             TeacherForm form = new TeacherForm();
             form.ShowDialog();
