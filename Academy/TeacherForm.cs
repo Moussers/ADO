@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Academy.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,10 +19,16 @@ namespace Academy
         {
             InitializeComponent();
         }
-        TeacherForm(int id) : this() 
+        public TeacherForm(int id) : this() 
         {
-            DataTable dataTable = DataBase.connector.Select("*", "Teacher", $"teahcer_id = {id}");
-
+            DataTable data = DataBase.connector.Select("*", "Teachers", $"teacher_id = {id}");
+            object[] arr = data.Rows[0].ItemArray;
+            teacher = new Models.Teacher(arr);
+            human = teacher;
+            Extract();
+            dtpWorkSince.Text = teacher.work_since;
+            tbRate.Text = teacher.rate.ToString("F2");
+            pbPhoto.Image = DataBase.connector.DownloadPhoto("Teachers", "photo", teacher.id);
         }
         protected override void buttonOK_Click(object sender, EventArgs e)
         {
@@ -41,7 +48,7 @@ namespace Academy
             }
             else
             {
-                DataBase.connector.Update($"UPDATE Teacher SET {teacher.GetUpdateString()} WHERE teacher_id={teacher.id}");
+                DataBase.connector.Update($"UPDATE Teachers SET {teacher.GetUpdateString()} WHERE teacher_id={teacher.id}");
             }
             if (teacher.photo != null) 
             {
