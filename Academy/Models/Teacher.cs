@@ -40,7 +40,10 @@ namespace Academy.Models
         }
         public override string GetCondition()
         {
-            return base.GetCondition() + $" AND work_since = N'{work_since}' AND rate = {rate}";
+            string new_rate = rate.ToString().Replace(",", ".");
+            //Replace - проходится по всему массиву символов и заменяет имеющиеся массивы на указанные
+            //к примеру запятые на точки.
+            return base.GetCondition() + $" AND work_since = N'{work_since}' AND rate = {new_rate}";
         }
     }
 }
