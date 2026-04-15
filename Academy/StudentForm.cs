@@ -34,7 +34,6 @@ namespace Academy
         public StudentForm(int id) : this()
         {
             DataTable data = DataBase.connector.Select("*", "Students", $"stud_id={id}");
-            object[] arr = data.Rows[0].ItemArray;
             student = new Models.Student(data.Rows[0].ItemArray);
             human = student;
             Extract();

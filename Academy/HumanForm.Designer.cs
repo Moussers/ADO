@@ -177,6 +177,7 @@
             this.tbPhone.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.RecentlyUsedList;
             this.tbPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.tbPhone.Location = new System.Drawing.Point(209, 221);
+            this.tbPhone.MaxLength = 16;
             this.tbPhone.Name = "tbPhone";
             this.tbPhone.Size = new System.Drawing.Size(251, 31);
             this.tbPhone.TabIndex = 12;

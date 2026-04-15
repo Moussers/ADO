@@ -21,14 +21,13 @@ namespace Academy
         }
         public TeacherForm(int id) : this() 
         {
-            DataTable data = DataBase.connector.Select("*", "Teachers", $"teacher_id = {id}");
-            object[] arr = data.Rows[0].ItemArray;
-            teacher = new Models.Teacher(arr);
+            DataTable data = DataBase.connector.Select($"SELECT * FROM Teachers WHERE teacher_id = {id}");
+            teacher = new Models.Teacher(data.Rows[0].ItemArray);
             human = teacher;
             Extract();
-            dtpWorkSince.Text = teacher.work_since;
-            tbRate.Text = teacher.rate.ToString("F2");
-            pbPhoto.Image = DataBase.connector.DownloadPhoto("Teachers", "photo", teacher.id);
+            this.dtpWorkSince.Value = Convert.ToDateTime(teacher.work_since);
+            this.tbRate.Text = teacher.rate.ToString();
+            pbPhoto.Image = DataBase.connector.DownloadPhoto("Teachers","photo",id);
         }
         protected override void buttonOK_Click(object sender, EventArgs e)
         {

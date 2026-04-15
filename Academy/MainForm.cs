@@ -126,7 +126,10 @@ namespace Academy
 
         private void dgvTeachers_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            TeacherForm form = new TeacherForm(Convert.ToInt32(dgvTeachers.Rows[e.RowIndex].Cells["teacher_id"].Value));
+            TeacherForm form = new TeacherForm
+                (
+                Convert.ToInt32(dgvTeachers.Rows[e.RowIndex].Cells["teacher_id"].Value)
+                );
             if (form.ShowDialog() == DialogResult.OK) 
             {
                 tabControl_SelectedIndexChanged(tabControl, null);
