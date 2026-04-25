@@ -30,7 +30,6 @@ namespace AcademyWPF
             connector = new Connector(ConfigurationManager.ConnectionStrings["PV_521_Import"].ConnectionString);
             tables = new DataGrid[] { dgvStudents, dgvGroups, dgvDirections, dgvDisciplines, dgvTeachers };
             tabControl.SelectedIndex = 0;
-
         }
 
         private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -39,6 +38,11 @@ namespace AcademyWPF
             tables[i].ItemsSource = connector.
                 Select($"SELECT * FROM {((sender as TabControl).Items[i] as TabItem).Header.ToString()}").DefaultView;
             statusBarCount.Text = $"Количество записей: {tables[i].Items.Count-1}";
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Вы нажали кнопку добавить");
         }
     }
 }
