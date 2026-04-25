@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AcademyWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" FontSize="16">
+        Title="MainWindow" Height="450" Width="1100" FontSize="16">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -38,6 +38,15 @@
                 HorizontalAlignment="Right" VerticalAlignment="Top" Content="Добавить" 
                 FontSize="15" FontFamily="Times New Roman" Margin="30 5" Click="Button_Click">
         </Button>
-        <ComboBox Name="filterByGroup" Width="150" Height="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="519,6,0,0"/>
+        <ComboBox Name="filterByGroup" 
+                  Width="120" Height="25" 
+                  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="852,2,0,0"
+                  SelectionChanged="change_sel"
+                  />
+        <ComboBox Name="filterByDirection" 
+                  Width="432" Height="25" 
+                  VerticalAlignment="Top" HorizontalAlignment="Left" Margin="395,1,0,0"
+                  SelectionChanged="change_sel"
+                  />
     </Grid>
 </Window>

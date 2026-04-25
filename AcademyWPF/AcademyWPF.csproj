@@ -60,9 +60,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="HumanForm.xaml.cs">
+      <DependentUpon>HumanForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Human.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Query.cs" />
+    <Page Include="HumanForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
