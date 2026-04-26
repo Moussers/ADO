@@ -24,6 +24,7 @@ namespace AcademyWPF
     {
         Connector connector;
         DataGrid[] tables;
+        HumanForm human;
         public MainWindow()
         {
             InitializeComponent();
@@ -58,7 +59,7 @@ namespace AcademyWPF
             }
         }
 
-        private void change_sel(object sender, SelectionChangedEventArgs e)
+        private void change_selected(object sender, SelectionChangedEventArgs e)
         {
             if (tabControl.SelectedIndex == 0)
             {
@@ -107,7 +108,8 @@ namespace AcademyWPF
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Вы нажали кнопку добавить");
+            human = new HumanForm();
+            human.Show();
         }
     }
 }

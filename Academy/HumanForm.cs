@@ -17,8 +17,7 @@ namespace Academy
         internal Models.Human human;
         protected HumanForm()
         {
-            InitializeComponent();
-           
+            InitializeComponent(); 
         }
         protected void Extract() 
         {

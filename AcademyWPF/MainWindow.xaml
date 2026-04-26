@@ -41,12 +41,12 @@
         <ComboBox Name="filterByGroup" 
                   Width="120" Height="25" 
                   VerticalAlignment="Top" HorizontalAlignment="Left" Margin="852,2,0,0"
-                  SelectionChanged="change_sel"
+                  SelectionChanged="change_selected" Grid.Row="0"
                   />
         <ComboBox Name="filterByDirection" 
                   Width="432" Height="25" 
                   VerticalAlignment="Top" HorizontalAlignment="Left" Margin="395,1,0,0"
-                  SelectionChanged="change_sel"
+                  SelectionChanged="change_selected" Grid.Row="0"
                   />
     </Grid>
 </Window>
