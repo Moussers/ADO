@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AcademyWPF"
         mc:Ignorable="d"
-        Title="HumanForm" Height="338" Width="548">
+        Title="HumanForm" Height="338" Width="518">
     <Grid HorizontalAlignment="Center" Width="580" Margin="0,0,0,2">
         <Label Content="Фамилия:" Name="lbLastName" HorizontalAlignment="Left" Margin="73,29,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.309,-0.052" Width="95" FontSize="20" FontFamily="Times New Roman" Height="33"/>
         <Label Content="Имя:" Name="lbFirstName" HorizontalAlignment="Left" Margin="111,69,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.309,-0.052" Width="57" FontSize="20" FontFamily="Times New Roman" Height="33"/>
@@ -19,8 +19,8 @@
         <TextBox Name="inputEMail" HorizontalAlignment="Left" Margin="186,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Height="26" FontSize="20" FontFamily="Times New Roman"/>
         <TextBox Name="inputPhone" HorizontalAlignment="Left" Margin="186,224,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="126" Height="26" FontSize="20" FontFamily="Times New Roman"/>
         <Button Content="Отмена" Name="btCancel" Click="btCancel_Click" HorizontalAlignment="Left" Margin="341,268,0,0" VerticalAlignment="Top" FontSize="17" FontFamily="Times New Roman" Height="24" Width="59"/>
-        <Button Content="Ок" x:Name="btOK" Click="btOK_Click" HorizontalAlignment="Center" Margin="0,268,0,0" VerticalAlignment="Top" FontSize="17" FontFamily="Times New Roman" Width="44" RenderTransformOrigin="1.108,0.586" Height="24"/>
-        <Image Name="imPhoto" Height="184" Margin="332,33,82,0" VerticalAlignment="Top" RenderTransformOrigin="0.494,0.454" />
+        <Button Content="Ок" x:Name="btOK" Click="btOK_Click" HorizontalAlignment="Left" Margin="283,268,0,0" VerticalAlignment="Top" FontSize="17" FontFamily="Times New Roman" Width="44" RenderTransformOrigin="1.108,0.586" Height="24"/>
+        <Image Name="imPhoto" Height="184" Margin="332,33,70,0" VerticalAlignment="Top" RenderTransformOrigin="0.494,0.454" />
         <Button Content="Обзор" x:Name="btBrowse" Click="btBrowse_Click" HorizontalAlignment="Left" Margin="385,234,0,0" VerticalAlignment="Top" FontSize="17" FontFamily="Times New Roman" Width="61" RenderTransformOrigin="0.506,0.338" Height="24"/>
         <DatePicker Name="dpBirthDate" HorizontalAlignment="Left" Margin="186,154,0,0" VerticalAlignment="Top" Width="122"/>
         <Label Name="lbID" Content="" HorizontalAlignment="Left" Margin="51,297,0,0" VerticalAlignment="Top"/>

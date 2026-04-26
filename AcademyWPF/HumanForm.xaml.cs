@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection.Emit;
 using System.Text;
@@ -18,26 +19,44 @@ namespace AcademyWPF
 {
     public partial class HumanForm : Window
     {
-        
         Models.Human human;
         public HumanForm()
         {
             InitializeComponent();
         }
-
+        protected void Extract() 
+        {
+            if (human != null) 
+            {
+                if (human.id != 0) lbID.Content = $"ID: {human.id}";
+                lbLastName.Content = human.last_name;
+                lbFirstName.Content = human.first_name;
+                lbMiddleName.Content = human.middle_name;
+                dpBirthDate.DataContext = Convert.ToDateTime(human.birth_date);
+                lbEMail.Content = human.email;
+                lbPhone.Content = human.phone;
+            }
+        }
         private void btBrowse_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.Filter = "All Files (*.*)|*.*| JPG Files (*.jpg)|*.jpg| JPEG Files (*.jpeg)|*.jpeg| PNG Files (*.png)|*.png";
-            dialog.ShowDialog();
+            if (dialog.ShowDialog() == true) 
+            {
+                Uri uri = new Uri(dialog.FileName);
+                imPhoto.Source = new BitmapImage(uri);
+            }
         }
 
-        private void btOK_Click(object sender, RoutedEventArgs e)
+        protected virtual void btOK_Click(object sender, RoutedEventArgs e)
         {
-            //human = new Models.Human
-            //    (lbID.Content.ToString() == "" ? 0: lbID.Content.ToString(),lbLastName.Content.ToString(),lbFirstName.Content.ToString(),lbMiddleName.Content.ToString(),
-            //    dpBirthDate.ToString(), lbEMail.Content.ToString(), lbPhone.Content.ToString(), imPhoto.Source);
-            //labelID.Text == "" ? 0 : Convert.ToInt32(labelID.Text.Split(':').Last()),
+            MemoryStream ms = new MemoryStream();
+            BitmapEncoder encoder = new PngBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(imPhoto.Source as BitmapSource));
+            encoder.Save(ms);
+            human = new Models.Human
+                (lbID.Content.ToString() == "" ? 0 : Convert.ToInt32(lbID.Content.ToString().Split(':').Last()), lbLastName.Content.ToString(), lbFirstName.Content.ToString(), lbMiddleName.Content.ToString(),
+                dpBirthDate.ToString(), lbEMail.Content.ToString(), lbPhone.Content.ToString(), System.Drawing.Image.FromStream(ms));
         }
         private void btCancel_Click(object sender, RoutedEventArgs e)
         {

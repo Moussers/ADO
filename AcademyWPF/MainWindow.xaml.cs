@@ -24,7 +24,7 @@ namespace AcademyWPF
     {
         Connector connector;
         DataGrid[] tables;
-        HumanForm human;
+        StudentForm student;
         public MainWindow()
         {
             InitializeComponent();
@@ -108,8 +108,8 @@ namespace AcademyWPF
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            human = new HumanForm();
-            human.Show();
+            student = new StudentForm();
+            student.Show();
         }
     }
 }
